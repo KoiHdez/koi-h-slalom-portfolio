@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless=new --disable-gpu --disable-javascript --screenshot=/private/tmp/claude-501/-Users-koipond-Documents-GitHub-projects-2026-consultant-portfolio/bc9100f2-fd9f-4555-b0fb-5606dbcb1a2c/scratchpad/capgrid6.png --window-size=1400,1600 \"http://localhost:8934/index.html#skills-heading\")",
+      "Bash(sips -g pixelHeight -g pixelWidth /private/tmp/claude-501/-Users-koipond-Documents-GitHub-projects-2026-consultant-portfolio/bc9100f2-fd9f-4555-b0fb-5606dbcb1a2c/scratchpad/capgrid6.png)",
+      "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless=new --disable-gpu --force-prefers-reduced-motion --screenshot=/private/tmp/claude-501/-Users-koipond-Documents-GitHub-projects-2026-consultant-portfolio/bc9100f2-fd9f-4555-b0fb-5606dbcb1a2c/scratchpad/capgrid7.png --window-size=1400,900 \"http://localhost:8934/index.html#skills-heading\")",
+      "Bash(kill 24426)"
+    ]
+  }
+}

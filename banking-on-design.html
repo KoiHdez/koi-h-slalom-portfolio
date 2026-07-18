@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Banking on Design — Koi Hernandez</title>
+  <meta name="description" content="How a holistic design system for a global investment bank unified multiple design pods and left a governance framework the client could operate independently." />
+  <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Figtree:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --font-sans: 'Figtree', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+      --bg-primary:   #F8F7F4;
+      --bg-elevated:  #EEECEA;
+      --bg-subtle:    #E6E5E1;
+      --text-primary: #111111;
+      --text-secondary: #525252;
+      --text-muted:   #8C8C88;
+      --accent:       #6E7E65;
+      --accent-hover: #5A6B52;
+      --accent-subtle:#E4EAE1;
+      --border:       #E0DDD9;
+      --max-content:  1100px;
+      --max-prose:    680px;
+      --px-mobile:    24px;
+      --px-tablet:    48px;
+      --px-desktop:   80px;
+      --duration-fast:200ms;
+    }
+
+    html, body {
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.5;
+    }
+
+    /* Serif headings and brand */
+    h1, h2, h3, .nav-brand, .cs-title, .section-heading, .card-title, .hero-name, .timeline-role-heading, .footer-brand-link { font-family: var(--font-serif); }
+
+    a { color: inherit; text-decoration: none; }
+    ul, ol { list-style: none; }
+
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+
+    /* ── NAV ── */
+    .site-nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgb(248 247 244 / 0.92);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: var(--max-content); margin-inline: auto;
+      padding-inline: 12px;
+      height: 3.5rem; display: flex; align-items: center; justify-content: space-between;
+    }
+    @media (min-width: 768px)  { .nav-inner { padding-inline: 24px; } }
+    @media (min-width: 1024px) { .nav-inner { padding-inline: 40px; } }
+
+    .nav-brand { font-weight: 800; font-size: 1.25rem; color: var(--text-primary); transition: color var(--duration-fast) ease; }
+    .nav-brand:hover { color: var(--accent); }
+    .nav-brand .dot { color: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: 1.5rem; }
+    @media (min-width: 640px) { .nav-links { gap: 2rem; } }
+    .nav-links a { font-size: 0.875rem; color: var(--text-secondary); transition: color var(--duration-fast) ease; }
+    .nav-links a:hover { color: var(--text-primary); }
+
+    /* ── HERO ── */
+    .cs-hero {
+      border-bottom: 1px solid var(--border);
+      padding-inline: var(--px-mobile);
+      padding-top: 4rem; padding-bottom: 0;
+    }
+    @media (min-width: 768px)  { .cs-hero { padding-inline: var(--px-tablet); padding-top: 5rem; } }
+    @media (min-width: 1024px) { .cs-hero { padding-inline: var(--px-desktop); padding-top: 6rem; } }
+
+    .cs-hero-inner { max-width: var(--max-content); margin-inline: auto; }
+
+    .cs-kicker {
+      font-family: var(--font-mono); font-size: 0.75rem;
+      color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em;
+      margin-bottom: 1.25rem;
+    }
+    .cs-kicker a { color: var(--accent); transition: color var(--duration-fast) ease; }
+    .cs-kicker a:hover { color: var(--accent-hover); }
+
+    .cs-title {
+      font-family: var(--font-serif); font-weight: 700;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      letter-spacing: -0.02em; line-height: 1.1;
+      color: var(--text-primary); max-width: 18ch;
+      margin-bottom: 1.5rem;
+    }
+
+    .cs-summary {
+      font-size: 1.125rem; color: var(--text-secondary);
+      line-height: 1.6; max-width: 52ch; margin-bottom: 3rem;
+    }
+    @media (min-width: 768px) { .cs-summary { font-size: 1.25rem; } }
+
+    .cs-hero-img {
+      position: relative; width: 100%; aspect-ratio: 16 / 7;
+      background: var(--bg-subtle); border: 1px solid var(--border);
+      border-bottom: none; border-radius: 6px 6px 0 0; overflow: hidden;
+      margin-top: 3rem;
+    }
+    .cs-hero-img-inner {
+      position: absolute; inset: 1.5rem 1.5rem 0;
+      background: var(--bg-elevated); border: 1px solid var(--border);
+      border-bottom: none; border-radius: 4px 4px 0 0;
+    }
+    .cs-hero-img-label {
+      position: absolute; left: 1rem; bottom: 1rem;
+      font-family: var(--font-mono); font-size: 0.625rem;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted);
+    }
+
+    /* ── PROSE CONTAINER ── */
+    .cs-body {
+      padding-inline: var(--px-mobile);
+    }
+    @media (min-width: 768px)  { .cs-body { padding-inline: var(--px-tablet); } }
+    @media (min-width: 1024px) { .cs-body { padding-inline: var(--px-desktop); } }
+
+    .cs-body-inner { max-width: var(--max-content); margin-inline: auto; }
+
+    /* ── META STRIP ── */
+    .meta-strip {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem 2rem;
+      padding-block: 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    @media (min-width: 640px) { .meta-strip { grid-template-columns: repeat(3, 1fr); } }
+    @media (min-width: 1024px) { .meta-strip { grid-template-columns: repeat(6, 1fr); } }
+
+    .meta-item {}
+    .meta-label {
+      font-family: var(--font-mono); font-size: 0.625rem;
+      text-transform: uppercase; letter-spacing: 0.12em;
+      color: var(--text-muted); margin-bottom: 0.375rem;
+    }
+    .meta-value { font-size: 0.875rem; font-weight: 500; color: var(--text-primary); }
+    .meta-tags { display: flex; flex-wrap: wrap; gap: 0.375rem; }
+    .meta-tag {
+      font-family: var(--font-mono); font-size: 0.6875rem;
+      background: var(--bg-subtle); border: 1px solid var(--border);
+      color: var(--text-secondary); padding: 0.2rem 0.5rem; border-radius: 2px;
+    }
+
+    /* ── PROSE SECTIONS ── */
+    .prose-section {
+      padding-block: 3.5rem;
+      border-bottom: 1px solid var(--border);
+      max-width: var(--max-prose);
+    }
+    @media (min-width: 768px) { .prose-section { padding-block: 4.5rem; } }
+
+    .prose-section:last-of-type { border-bottom: none; }
+
+    .section-label {
+      font-family: var(--font-mono); font-size: 0.75rem;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--text-muted); margin-bottom: 1.25rem;
+    }
+
+    .prose-h2 {
+      font-family: var(--font-sans); font-size: 1.5rem; font-weight: 700;
+      letter-spacing: -0.01em; color: var(--text-primary); margin-bottom: 1.25rem;
+    }
+    @media (min-width: 768px) { .prose-h2 { font-size: 1.75rem; } }
+
+    .prose-h3 {
+      font-family: var(--font-sans); font-size: 1.125rem; font-weight: 600;
+      color: var(--text-primary); margin-bottom: 0.75rem; margin-top: 2rem;
+    }
+    .prose-h3:first-child { margin-top: 0; }
+
+    .prose-p {
+      font-family: var(--font-sans); font-size: 1rem;
+      color: var(--text-secondary); line-height: 1.75;
+      margin-bottom: 1rem;
+    }
+    .prose-p:last-child { margin-bottom: 0; }
+
+    /* ── PROCESS SECTION ── */
+    .process-section { padding-block: 3.5rem; border-bottom: 1px solid var(--border); }
+    @media (min-width: 768px) { .process-section { padding-block: 4.5rem; } }
+
+    .process-phases { display: flex; flex-direction: column; gap: 3.5rem; margin-top: 2rem; }
+
+    .phase-label {
+      font-family: var(--font-mono); font-size: 0.6875rem;
+      text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .phase-prose { max-width: var(--max-prose); }
+
+    .artifact-placeholder {
+      margin-top: 1.5rem;
+      position: relative; width: 100%; aspect-ratio: 16 / 9;
+      background: var(--bg-elevated); border: 1px solid var(--border);
+      border-radius: 4px; overflow: hidden;
+    }
+    .artifact-inner {
+      position: absolute; inset: 1rem;
+      background: var(--bg-subtle); border: 1px solid var(--border); border-radius: 2px;
+    }
+    .artifact-lines { position: absolute; inset: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem; }
+    .artifact-line {
+      height: 6px; background: var(--border); border-radius: 9999px;
+    }
+    .artifact-line:nth-child(2) { width: 75%; }
+    .artifact-line:nth-child(3) { width: 55%; }
+    .artifact-caption {
+      margin-top: 0.75rem;
+      font-family: var(--font-mono); font-size: 0.6875rem;
+      color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em;
+    }
+
+    /* ── OUTCOME CALLOUT ── */
+    .outcome-section { padding-block: 3.5rem; border-bottom: 1px solid var(--border); }
+    @media (min-width: 768px) { .outcome-section { padding-block: 4.5rem; } }
+
+    .metrics-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px;
+      background: var(--border); border: 1px solid var(--border);
+      border-radius: 6px; overflow: hidden; margin-bottom: 2.5rem;
+    }
+    @media (min-width: 640px) { .metrics-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    .metric-cell {
+      background: var(--bg-elevated); padding: 1.5rem 1.25rem;
+    }
+    .metric-value {
+      font-family: var(--font-sans); font-size: 2.25rem; font-weight: 800;
+      letter-spacing: -0.02em; color: var(--text-primary); line-height: 1;
+      margin-bottom: 0.375rem;
+    }
+    .metric-label {
+      font-family: var(--font-mono); font-size: 0.6875rem;
+      text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted);
+    }
+
+    /* ── QUOTE ── */
+    .quote-section { padding-block: 3.5rem; border-bottom: 1px solid var(--border); }
+    @media (min-width: 768px) { .quote-section { padding-block: 4.5rem; } }
+
+    .quote-block {
+      border-left: 2px solid var(--accent);
+      padding-left: 1.5rem;
+      max-width: var(--max-prose);
+    }
+    .quote-text {
+      font-size: 1.125rem; font-style: italic;
+      color: var(--text-secondary); line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+    .quote-attribution {
+      font-family: var(--font-mono); font-size: 0.6875rem;
+      text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted);
+    }
+
+    /* ── NEXT PROJECT ── */
+    .next-project {
+      padding-block: 4rem;
+      display: flex; flex-direction: column; gap: 0.75rem;
+    }
+    .next-label {
+      font-family: var(--font-mono); font-size: 0.75rem;
+      text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted);
+    }
+    .next-link {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      font-family: var(--font-sans); font-size: 1.5rem; font-weight: 700;
+      color: var(--text-primary); transition: color var(--duration-fast) ease;
+    }
+    .next-link:hover { color: var(--accent); }
+    .next-link .arrow {
+      display: inline-block; transition: transform var(--duration-fast) ease;
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .next-link:hover .arrow { transform: translateX(4px); }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">Koi Hernandez<span class="dot">.</span></a>
+      <nav aria-label="Primary">
+        <ul class="nav-links">
+          <li><a href="work.html">Work</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="mailto:koi.hdez@gmail.com">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="cs-hero">
+      <div class="cs-hero-inner">
+        <p class="cs-kicker">
+          <a href="work.html">← Work</a>
+          <span style="margin-inline: 0.5rem; color: var(--text-muted);">/</span>
+          Design Systems · Financial Services
+        </p>
+        <h1 class="cs-title">Banking on Design</h1>
+        <p class="cs-summary">How a holistic design system for a global investment bank unified multiple design pods and left a governance framework the client could run independently.</p>
+        <figure class="cs-hero-img" aria-hidden="true">
+          <div class="cs-hero-img-inner"></div>
+          <figcaption class="cs-hero-img-label">Hero image — to be replaced with actual artifact</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- BODY -->
+    <div class="cs-body">
+      <div class="cs-body-inner">
+
+        <!-- META STRIP -->
+        <div class="meta-strip" role="list" aria-label="Project details">
+          <div class="meta-item" role="listitem">
+            <p class="meta-label">Role</p>
+            <p class="meta-value">Lead Designer, Design Systems Pod</p>
+          </div>
+          <div class="meta-item" role="listitem">
+            <p class="meta-label">Client</p>
+            <p class="meta-value">Global investment bank</p>
+          </div>
+          <div class="meta-item" role="listitem">
+            <p class="meta-label">Industry</p>
+            <p class="meta-value">Financial Services</p>
+          </div>
+          <div class="meta-item" role="listitem">
+            <p class="meta-label">Duration</p>
+            <p class="meta-value">Multi-sprint engagement</p>
+          </div>
+          <div class="meta-item" role="listitem">
+            <p class="meta-label">Disciplines</p>
+            <div class="meta-tags">
+              <span class="meta-tag">Design Systems</span>
+              <span class="meta-tag">UI Design</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- OVERVIEW -->
+        <div class="prose-section">
+          <p class="section-label">Overview</p>
+          <p class="prose-p">A global investment bank needed to re-envision the call center agent experience across a wide range of products. The goal: centralize a service offering that spanned multiple product lines, agent workflows, and data platforms into a unified platform — a modular dashboard where agents could interact with data providers without switching contexts.</p>
+          <p class="prose-p">I led the design system effort at the center of that work. Multiple pods were working in parallel on different project streams, and without a shared foundation, the risk of divergence was high. My job was to build the system that kept them coherent — and then make sure the client could maintain it after we left.</p>
+        </div>
+
+        <!-- PROBLEM -->
+        <div class="prose-section">
+          <p class="section-label">Problem</p>
+          <p class="prose-p">The client's "North Star" vision was ambitious: a single, unified platform where call center agents could access their full product suite without friction. But the path to get there required multiple design pods working on different parts of the experience simultaneously — and inconsistent local decisions compound quickly at that scale.</p>
+          <p class="prose-p">There was no shared design foundation. Each pod was making independent decisions about components, patterns, and interaction models. The work needed a system that could accommodate the unique needs of each pod while keeping the end-to-end experience coherent.</p>
+        </div>
+
+        <!-- MY ROLE -->
+        <div class="prose-section">
+          <p class="section-label">My Role</p>
+          <p class="prose-p">As Lead Designer for the Design Systems Pod, I led the creation of the design system and provided leadership across pods to maintain coherence across project streams. I coordinated with the client's development teams to ensure timely component delivery and facilitated cross-program collaboration — learning the unique needs of each pod and translating those into shared system decisions.</p>
+          <p class="prose-p">I acted as the design system subject matter expert throughout the engagement, partnering closely with the client's design leads. That partnership was critical: the system wasn't just for the duration of the engagement — it needed to be something the client could own and evolve independently.</p>
+        </div>
+
+        <!-- PROCESS -->
+        <div class="process-section">
+          <p class="section-label">Process</p>
+          <h2 class="prose-h2">How the work unfolded.</h2>
+
+          <div class="process-phases">
+
+            <div class="phase">
+              <p class="phase-label">01 — Discovery &amp; Cross-Pod Alignment</p>
+              <div class="phase-prose">
+                <p class="prose-p">Before building anything, I spent time with each pod to understand the unique demands of their project streams. The audit revealed where teams had already made diverging decisions — spacing, component naming, interaction patterns — and surfaced the places where alignment was most urgent.</p>
+                <p class="prose-p">The goal wasn't to centralize everything. Some differences were appropriate. The goal was to agree on what had to be shared and what could stay local — and to make that distinction explicit rather than leaving it to chance.</p>
+              </div>
+              <figure class="artifact-placeholder" aria-hidden="true">
+                <div class="artifact-inner">
+                  <div class="artifact-lines">
+                    <div class="artifact-line"></div>
+                    <div class="artifact-line"></div>
+                    <div class="artifact-line"></div>
+                  </div>
+                </div>
+              </figure>
+              <p class="artifact-caption">Cross-pod audit — placeholder for actual artifact</p>
+            </div>
+
+            <div class="phase">
+              <p class="phase-label">02 — Architecture &amp; System Design</p>
+              <div class="phase-prose">
+                <p class="prose-p">I designed the system architecture to support the modular nature of the product — components that could be composed into different dashboard configurations without breaking. The system needed to be flexible enough for each pod's needs while rigid enough to produce a coherent end product.</p>
+                <p class="prose-p">I worked closely with the client's development teams throughout this phase, aligning on component contracts early so that design and engineering decisions could move in lockstep rather than creating rework at handoff.</p>
+              </div>
+              <figure class="artifact-placeholder" aria-hidden="true">
+                <div class="artifact-inner">
+                  <div class="artifact-lines">
+                    <div class="artifact-line"></div>
+                    <div class="artifact-line"></div>
+                    <div class="artifact-line"></div>
+                  </div>
+                </div>
+              </figure>
+              <p class="artifact-caption">System architecture — placeholder for actual artifact</p>
+            </div>
+
+            <div class="phase">
+              <p class="phase-label">03 — Component Build &amp; Documentation</p>
+              <div class="phase-prose">
+                <p class="prose-p">Components were sequenced by what was blocking active pod work, not by category or alphabetical order. I tracked requests across all pods in a shared backlog and made sequencing decisions that minimized blockers across the program. Documentation was part of the definition of done on every component — not a post-build activity.</p>
+                <p class="prose-p">Every component shipped with usage guidance and a clear spec for developers. That discipline kept the system trustworthy — teams used it because it was reliable, not because they were required to.</p>
+              </div>
+              <figure class="artifact-placeholder" aria-hidden="true">
+                <div class="artifact-inner">
+                  <div class="artifact-lines">
+                    <div class="artifact-line"></div>
+                    <div class="artifact-line"></div>
+                    <div class="artifact-line"></div>
+                  </div>
+                </div>
+              </figure>
+              <p class="artifact-caption">Component documentation — placeholder for actual artifact</p>
+            </div>
+
+            <div class="phase">
+              <p class="phase-label">04 — Governance &amp; Client Independence</p>
+              <div class="phase-prose">
+                <p class="prose-p">The final phase was about making the system self-sustaining after the engagement ended. I built out content and governance guidelines covering contribution processes, versioning, deprecation policy, and decision criteria for promoting components from product libraries to the shared system.</p>
+                <p class="prose-p">We ran working sessions with the client's internal design leads to walk through governance in practice. The goal was for them to walk away with judgment, not just documentation — the ability to make the same decisions independently that I'd been making throughout the engagement.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- OUTCOME -->
+        <div class="outcome-section">
+          <p class="section-label">Outcome</p>
+          <div class="metrics-grid" role="list" aria-label="Project metrics">
+            <div class="metric-cell" role="listitem">
+              <p class="metric-value">3+</p>
+              <p class="metric-label">Design pods coordinated</p>
+            </div>
+            <div class="metric-cell" role="listitem">
+              <p class="metric-value">Full</p>
+              <p class="metric-label">Governance framework</p>
+            </div>
+            <div class="metric-cell" role="listitem">
+              <p class="metric-value">Post-engagement</p>
+              <p class="metric-label">Client-maintained system</p>
+            </div>
+          </div>
+          <div style="max-width: var(--max-prose);">
+            <p class="prose-p">The result was a mature, independently operable design system — rare for a consulting engagement. The client walked away with a comprehensive library of design assets, requirements, and governance practices. The system significantly strengthened collaboration across business units, optimized asset organization, and enabled a cohesive, frictionless digital experience.</p>
+            <p class="prose-p">More importantly: the team didn't need us anymore. That was the measure of success.</p>
+          </div>
+        </div>
+
+        <!-- QUOTE -->
+        <div class="quote-section">
+          <div class="quote-block">
+            <p class="quote-text">"I learned a lot from working with Koi. Though he was the XD lead, my voice was heard as an equal. Not only did I get the opportunity to voice design decisions, but Koi has so much knowledge and acted as a mentor to teach me the ins and outs of Figma, design systems, and sprint planning. He deserves recognition for not only his knowledge and ability to exceed expectations for client work, but also for making time for other team members."</p>
+            <p class="quote-attribution">Colleague — Design team</p>
+          </div>
+        </div>
+
+        <!-- REFLECTION -->
+        <div class="prose-section">
+          <p class="section-label">Reflection</p>
+          <p class="prose-p">The hardest part of this project wasn't the design work — it was the alignment work that had to happen before the design work could mean anything. A design system in a multi-pod program is as much an organizational intervention as it is a design artifact. The governance phase taught me that the most valuable thing you can leave behind isn't components — it's the ability for a team to make good decisions without you.</p>
+        </div>
+
+        <!-- NEXT PROJECT -->
+        <div class="next-project">
+          <p class="next-label">Next project</p>
+          <a href="life-sciences-marketplace.html" class="next-link">
+            Life Sciences Marketplace
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>

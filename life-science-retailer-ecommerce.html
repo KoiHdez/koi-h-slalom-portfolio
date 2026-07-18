@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Life Science Retailer E-commerce — Koi Hernandez</title>
+  <meta name="description" content="Redesigning a global life sciences retailer's checkout and account experience in six weeks — designs that are still holding up years later." />
+  <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Figtree:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --font-sans: 'Figtree', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+      --bg-primary:   #F8F7F4;
+      --bg-elevated:  #EEECEA;
+      --bg-subtle:    #E6E5E1;
+      --text-primary: #111111;
+      --text-secondary: #525252;
+      --text-muted:   #8C8C88;
+      --accent:       #6E7E65;
+      --accent-hover: #5A6B52;
+      --accent-subtle:#E4EAE1;
+      --border:       #E0DDD9;
+      --max-content:  1100px;
+      --max-prose:    680px;
+      --px-mobile:    24px;
+      --px-tablet:    48px;
+      --px-desktop:   80px;
+      --duration-fast:200ms;
+    }
+
+    html, body { background: var(--bg-primary); color: var(--text-primary); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; line-height: 1.5; }
+    /* Serif headings and brand */
+    h1, h2, h3, .nav-brand, .cs-title, .section-heading, .card-title, .hero-name, .timeline-role-heading, .footer-brand-link { font-family: var(--font-serif); }
+    a { color: inherit; text-decoration: none; }
+    ul, ol { list-style: none; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+
+    .site-nav { position: sticky; top: 0; z-index: 50; background: rgb(248 247 244 / 0.92); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
+    .nav-inner { max-width: var(--max-content); margin-inline: auto; padding-inline: 12px; height: 3.5rem; display: flex; align-items: center; justify-content: space-between; }
+    @media (min-width: 768px)  { .nav-inner { padding-inline: 24px; } }
+    @media (min-width: 1024px) { .nav-inner { padding-inline: 40px; } }
+    .nav-brand { font-weight: 800; font-size: 1.25rem; color: var(--text-primary); transition: color var(--duration-fast) ease; }
+    .nav-brand:hover { color: var(--accent); }
+    .nav-brand .dot { color: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: 1.5rem; }
+    @media (min-width: 640px) { .nav-links { gap: 2rem; } }
+    .nav-links a { font-size: 0.875rem; color: var(--text-secondary); transition: color var(--duration-fast) ease; }
+    .nav-links a:hover { color: var(--text-primary); }
+
+    .cs-hero { border-bottom: 1px solid var(--border); padding-inline: var(--px-mobile); padding-top: 4rem; padding-bottom: 0; }
+    @media (min-width: 768px)  { .cs-hero { padding-inline: var(--px-tablet); padding-top: 5rem; } }
+    @media (min-width: 1024px) { .cs-hero { padding-inline: var(--px-desktop); padding-top: 6rem; } }
+    .cs-hero-inner { max-width: var(--max-content); margin-inline: auto; }
+    .cs-kicker { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1.25rem; }
+    .cs-kicker a { color: var(--accent); transition: color var(--duration-fast) ease; }
+    .cs-kicker a:hover { color: var(--accent-hover); }
+    .cs-title { font-family: var(--font-serif); font-weight: 700; font-size: clamp(2rem, 5vw, 3.5rem); letter-spacing: -0.02em; line-height: 1.1; color: var(--text-primary); max-width: 18ch; margin-bottom: 1.5rem; }
+    .cs-summary { font-size: 1.125rem; color: var(--text-secondary); line-height: 1.6; max-width: 52ch; margin-bottom: 3rem; }
+    @media (min-width: 768px) { .cs-summary { font-size: 1.25rem; } }
+    .cs-hero-img { position: relative; width: 100%; aspect-ratio: 16 / 7; background: var(--bg-subtle); border: 1px solid var(--border); border-bottom: none; border-radius: 6px 6px 0 0; overflow: hidden; margin-top: 3rem; }
+    .cs-hero-img-inner { position: absolute; inset: 1.5rem 1.5rem 0; background: var(--bg-elevated); border: 1px solid var(--border); border-bottom: none; border-radius: 4px 4px 0 0; }
+    .cs-hero-img-label { position: absolute; left: 1rem; bottom: 1rem; font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
+
+    .cs-body { padding-inline: var(--px-mobile); }
+    @media (min-width: 768px)  { .cs-body { padding-inline: var(--px-tablet); } }
+    @media (min-width: 1024px) { .cs-body { padding-inline: var(--px-desktop); } }
+    .cs-body-inner { max-width: var(--max-content); margin-inline: auto; }
+
+    .meta-strip { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem 2rem; padding-block: 2.5rem; border-bottom: 1px solid var(--border); }
+    @media (min-width: 640px) { .meta-strip { grid-template-columns: repeat(3, 1fr); } }
+    @media (min-width: 1024px) { .meta-strip { grid-template-columns: repeat(6, 1fr); } }
+    .meta-label { font-family: var(--font-mono); font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-muted); margin-bottom: 0.375rem; }
+    .meta-value { font-size: 0.875rem; font-weight: 500; color: var(--text-primary); }
+    .meta-tags { display: flex; flex-wrap: wrap; gap: 0.375rem; }
+    .meta-tag { font-family: var(--font-mono); font-size: 0.6875rem; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text-secondary); padding: 0.2rem 0.5rem; border-radius: 2px; }
+
+    .prose-section { padding-block: 3.5rem; border-bottom: 1px solid var(--border); max-width: var(--max-prose); }
+    @media (min-width: 768px) { .prose-section { padding-block: 4.5rem; } }
+    .section-label { font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 1.25rem; }
+    .prose-h2 { font-family: var(--font-sans); font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; color: var(--text-primary); margin-bottom: 1.25rem; }
+    @media (min-width: 768px) { .prose-h2 { font-size: 1.75rem; } }
+    .prose-p { font-family: var(--font-sans); font-size: 1rem; color: var(--text-secondary); line-height: 1.75; margin-bottom: 1rem; }
+    .prose-p:last-child { margin-bottom: 0; }
+
+    .process-section { padding-block: 3.5rem; border-bottom: 1px solid var(--border); }
+    @media (min-width: 768px) { .process-section { padding-block: 4.5rem; } }
+    .process-phases { display: flex; flex-direction: column; gap: 3.5rem; margin-top: 2rem; }
+    .phase-label { font-family: var(--font-mono); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 0.75rem; }
+    .phase-prose { max-width: var(--max-prose); }
+    .artifact-placeholder { margin-top: 1.5rem; position: relative; width: 100%; aspect-ratio: 16 / 9; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
+    .artifact-inner { position: absolute; inset: 1rem; background: var(--bg-subtle); border: 1px solid var(--border); border-radius: 2px; }
+    .artifact-lines { position: absolute; inset: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem; }
+    .artifact-line { height: 6px; background: var(--border); border-radius: 9999px; }
+    .artifact-line:nth-child(2) { width: 75%; }
+    .artifact-line:nth-child(3) { width: 55%; }
+    .artifact-caption { margin-top: 0.75rem; font-family: var(--font-mono); font-size: 0.6875rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+
+    .outcome-section { padding-block: 3.5rem; border-bottom: 1px solid var(--border); }
+    @media (min-width: 768px) { .outcome-section { padding-block: 4.5rem; } }
+    .metrics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; margin-bottom: 2.5rem; }
+    @media (min-width: 640px) { .metrics-grid { grid-template-columns: repeat(3, 1fr); } }
+    .metric-cell { background: var(--bg-elevated); padding: 1.5rem 1.25rem; }
+    .metric-value { font-family: var(--font-sans); font-size: 2.25rem; font-weight: 800; letter-spacing: -0.02em; color: var(--text-primary); line-height: 1; margin-bottom: 0.375rem; }
+    .metric-label { font-family: var(--font-mono); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); }
+
+    .next-project { padding-block: 4rem; display: flex; flex-direction: column; gap: 0.75rem; }
+    .next-label { font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); }
+    .next-link { display: inline-flex; align-items: center; gap: 0.75rem; font-family: var(--font-sans); font-size: 1.5rem; font-weight: 700; color: var(--text-primary); transition: color var(--duration-fast) ease; }
+    .next-link:hover { color: var(--accent); }
+    .next-link .arrow { display: inline-block; transition: transform var(--duration-fast) ease; }
+    @media (prefers-reduced-motion: no-preference) { .next-link:hover .arrow { transform: translateX(4px); } }
+  </style>
+</head>
+<body>
+
+  <header class="site-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">Koi Hernandez<span class="dot">.</span></a>
+      <nav aria-label="Primary">
+        <ul class="nav-links">
+          <li><a href="work.html">Work</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="mailto:koi.hdez@gmail.com">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="cs-hero">
+      <div class="cs-hero-inner">
+        <p class="cs-kicker">
+          <a href="work.html">← Work</a>
+          <span style="margin-inline: 0.5rem; color: var(--text-muted);">/</span>
+          UX · UI · Design Systems · 6 weeks
+        </p>
+        <h1 class="cs-title">Life Science Retailer E-commerce</h1>
+        <p class="cs-summary">Redesigning a global life sciences retailer's checkout and account experience in six weeks — designs that are still holding up years later.</p>
+        <figure class="cs-hero-img" aria-hidden="true">
+          <div class="cs-hero-img-inner"></div>
+          <figcaption class="cs-hero-img-label">Hero image — to be replaced with actual artifact</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <div class="cs-body">
+      <div class="cs-body-inner">
+
+        <div class="meta-strip" role="list" aria-label="Project details">
+          <div class="meta-item" role="listitem">
+            <p class="meta-label">Role</p>
+            <p class="meta-value">Design Lead, UX &amp; UI</p>
+          </div>
+          <div class="meta-item" role="listitem">
+            <p class="meta-label">Client</p>
+            <p class="meta-value">Global life sciences retailer</p>
+          </div>
+          <div class="meta-item" role="listitem">
+            <p class="meta-label">Industry</p>
+            <p class="meta-value">Life Sciences</p>
+          </div>
+          <div class="meta-item" role="listitem">
+            <p class="meta-label">Duration</p>
+            <p class="meta-value">6 weeks</p>
+          </div>
+          <div class="meta-item" role="listitem">
+            <p class="meta-label">Disciplines</p>
+            <div class="meta-tags">
+              <span class="meta-tag">UX Design</span>
+              <span class="meta-tag">UI Design</span>
+              <span class="meta-tag">Design Systems</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="prose-section">
+          <p class="section-label">Overview</p>
+          <p class="prose-p">A global life sciences and diagnostics retailer had been running on the same storefront since 2018. Checkout was too many steps. Account management was confusing. The experience hadn't kept pace with how buyers actually worked. In six weeks, I led the UX and UI redesign — delivering 18+ screens and a lightweight design system foundation that the client's team could build on after the engagement ended. The designs are still in production.</p>
+        </div>
+
+        <div class="prose-section">
+          <p class="section-label">Problem</p>
+          <p class="prose-p">The storefront was functional but dated. Checkout required too many steps and the cart-to-confirmation flow had friction that buyers encountered every order — a particular problem for repeat B2B customers placing the same orders regularly. Account management was a secondary concern in the original build and it showed: users couldn't easily find order history, saved addresses, or reorder capabilities.</p>
+          <p class="prose-p">The brief was tight: six weeks, 18+ screens, designs handed off ready for development. There was no time for a sprawling discovery phase. The constraint forced prioritization from day one.</p>
+        </div>
+
+        <div class="prose-section">
+          <p class="section-label">My Role</p>
+          <p class="prose-p">I led the design work end-to-end — workshops with stakeholders to align on scope, wireframes, high-fidelity screens, usability testing, and handoff. I also initiated a lightweight design system as part of the deliverable: a column grid, typography styles, and a component set the client's internal team could extend. That system wasn't in the original brief, but it was the difference between handing off screens and handing off something that could scale.</p>
+        </div>
+
+        <div class="process-section">
+          <p class="section-label">Process</p>
+          <h2 class="prose-h2">Six weeks, structured tightly.</h2>
+
+          <div class="process-phases">
+
+            <div class="phase">
+              <p class="phase-label">01 — Workshops &amp; Scope</p>
+              <div class="phase-prose">
+                <p class="prose-p">The engagement opened with structured workshops to surface the full scope of problems and align stakeholders on what the six weeks would address. The workshops also functioned as a forcing function: with a fixed timeline, we needed explicit agreement on what was in scope and what wasn't before a single wireframe was drawn.</p>
+                <p class="prose-p">Checkout simplification and account management improvements emerged as the two highest-priority areas. Everything else was deprioritized explicitly — not ignored, but deferred with rationale documented so future work could pick up where we left off.</p>
+              </div>
+              <figure class="artifact-placeholder" aria-hidden="true">
+                <div class="artifact-inner"><div class="artifact-lines"><div class="artifact-line"></div><div class="artifact-line"></div><div class="artifact-line"></div></div></div>
+              </figure>
+              <p class="artifact-caption">Workshop artifacts — placeholder for Miro board export</p>
+            </div>
+
+            <div class="phase">
+              <p class="phase-label">02 — Wireframes</p>
+              <div class="phase-prose">
+                <p class="prose-p">Wireframes moved fast — the goal was to validate structure and flow, not pixel-perfect design. I focused on the checkout sequence first, reducing the step count and consolidating form interactions. The shopping cart wireframes surfaced a reorder pattern that hadn't been in the original brief but was clearly needed for the B2B use case.</p>
+              </div>
+              <figure class="artifact-placeholder" aria-hidden="true">
+                <div class="artifact-inner"><div class="artifact-lines"><div class="artifact-line"></div><div class="artifact-line"></div><div class="artifact-line"></div></div></div>
+              </figure>
+              <p class="artifact-caption">Shopping cart wireframes — placeholder for actual artifact</p>
+            </div>
+
+            <div class="phase">
+              <p class="phase-label">03 — High-Fidelity &amp; Design System</p>
+              <div class="phase-prose">
+                <p class="prose-p">High-fidelity work ran in parallel with the wireframe reviews — as each section was approved, I moved it to hi-fi rather than waiting for all wireframes to be complete. This compressed the timeline without sacrificing quality on any individual screen.</p>
+                <p class="prose-p">I built the design system alongside the screens, not after. The column grid and typography styles were established early and applied consistently, which meant the hi-fi work went faster and the system documentation was largely done by the time screens were complete.</p>
+              </div>
+              <figure class="artifact-placeholder" aria-hidden="true">
+                <div class="artifact-inner"><div class="artifact-lines"><div class="artifact-line"></div><div class="artifact-line"></div><div class="artifact-line"></div></div></div>
+              </figure>
+              <p class="artifact-caption">Checkout hi-fi screens — placeholder for actual artifact</p>
+            </div>
+
+            <div class="phase">
+              <p class="phase-label">04 — Usability Testing &amp; Handoff</p>
+              <div class="phase-prose">
+                <p class="prose-p">Usability testing ran in the final stretch — moderated sessions focused on the checkout flow and account management screens. The sessions confirmed the structural decisions held. A handful of copy changes and one navigation adjustment came out of the sessions and were incorporated before handoff.</p>
+                <p class="prose-p">Handoff included annotated specs, the design system file, and a brief onboarding document for the client's development team. The goal was a handoff the team could act on independently — which they did.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="outcome-section">
+          <p class="section-label">Outcome</p>
+          <div class="metrics-grid" role="list" aria-label="Project metrics">
+            <div class="metric-cell" role="listitem">
+              <p class="metric-value">18+</p>
+              <p class="metric-label">Screens delivered</p>
+            </div>
+            <div class="metric-cell" role="listitem">
+              <p class="metric-value">6 wks</p>
+              <p class="metric-label">Full delivery</p>
+            </div>
+            <div class="metric-cell" role="listitem">
+              <p class="metric-value">Still live</p>
+              <p class="metric-label">Years in production</p>
+            </div>
+          </div>
+          <div style="max-width: var(--max-prose);">
+            <p class="prose-p">18+ screens delivered on schedule. The lightweight design system I introduced gave the client's internal team a foundation to build from — it wasn't in the brief, but it's the part of the engagement I'm most proud of, because it multiplied the value of everything else we delivered.</p>
+            <p class="prose-p">The designs are still in production. For a six-week engagement, that's the clearest signal that the decisions held up.</p>
+          </div>
+        </div>
+
+        <div class="prose-section">
+          <p class="section-label">Reflection</p>
+          <p class="prose-p">Six weeks is not a lot of time. The thing that made it work was front-loading alignment — the workshops at the start weren't overhead, they were what made everything after them possible. The constraint that felt most limiting (the timeline) turned out to be what kept the work focused. I've thought about that trade-off on longer engagements since: more time doesn't always mean better decisions, and sometimes a hard constraint is clarifying in a way that an open timeline isn't.</p>
+        </div>
+
+        <div class="next-project">
+          <p class="next-label">Next project</p>
+          <a href="banking-on-design.html" class="next-link">
+            Banking on Design
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>

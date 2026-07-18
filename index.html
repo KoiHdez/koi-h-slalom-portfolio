@@ -1,0 +1,1160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Koi Hernandez — Senior Experience Designer</title>
+  <meta name="description" content="Koi Hernandez — Senior Experience Designer. Product, UX, and design systems work for teams serious about craft." />
+  <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Figtree:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --font-sans: 'Figtree', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+      --bg-primary:   #F8F7F4;
+      --bg-elevated:  #EEECEA;
+      --bg-subtle:    #E6E5E1;
+      --text-primary: #111111;
+      --text-secondary: #525252;
+      --text-muted:   #8C8C88;
+      --accent:       #6E7E65;
+      --accent-hover: #5A6B52;
+      --accent-subtle:#E4EAE1;
+      --border:       #E0DDD9;
+
+      --max-content:  1100px;
+      --max-prose:    680px;
+      --px-mobile:    24px;
+      --px-tablet:    48px;
+      --px-desktop:   80px;
+      --duration-fast:200ms;
+    }
+
+    html, body {
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.5;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    ul, ol { list-style: none; }
+
+    /* ── Layout helpers ─────────────────────────────────────── */
+    .container {
+      max-width: var(--max-content);
+      margin-inline: auto;
+      padding-inline: var(--px-mobile);
+    }
+    @media (min-width: 768px)  { .container { padding-inline: var(--px-tablet); } }
+    @media (min-width: 1024px) { .container { padding-inline: var(--px-desktop); } }
+
+    /* ── Focus ──────────────────────────────────────────────── */
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    /* ── NAV ────────────────────────────────────────────────── */
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgb(248 247 244 / 0.92);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .site-nav .container {
+      height: 3.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      /* slightly tighter horizontal padding specifically for the nav */
+      padding-inline: 12px;
+    }
+    @media (min-width: 768px)  { .site-nav .container { padding-inline: 24px; } }
+    @media (min-width: 1024px) { .site-nav .container { padding-inline: 40px; } }
+
+    .nav-brand {
+      font-family: var(--font-serif);
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: var(--text-primary);
+      transition: color var(--duration-fast) ease;
+      border-radius: 2px;
+    }
+    .nav-brand:hover { color: var(--accent); }
+    .nav-brand .dot  { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    @media (min-width: 640px) { .nav-links { gap: 2rem; } }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      transition: color var(--duration-fast) ease;
+      position: relative;
+      padding-bottom: 2px;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0;
+      width: 100%; height: 1.5px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.22s ease;
+    }
+    .nav-links a:hover::after,
+    .nav-links a[aria-current]::after { transform: scaleX(1); }
+    .nav-links a:hover { color: var(--text-primary); }
+
+    /* ── HERO ───────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      border-bottom: 1px solid var(--border);
+      padding-inline: var(--px-mobile);
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+      min-height: calc(100svh - 3.5rem);
+      display: flex;
+      align-items: center;
+    }
+    @media (min-width: 768px) {
+      .hero {
+        padding-inline: var(--px-tablet);
+        padding-top: 6rem;
+        padding-bottom: 5rem;
+      }
+    }
+    @media (min-width: 1024px) {
+      .hero {
+        padding-inline: var(--px-desktop);
+        padding-top: 7rem;
+        padding-bottom: 6rem;
+      }
+    }
+
+    .hero-glow {
+      pointer-events: none;
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    .hero-glow-inner {
+      position: absolute;
+      top: -10rem;
+      right: 0;
+      height: 520px;
+      width: 520px;
+      border-radius: 50%;
+      background: var(--accent-subtle);
+      opacity: 0.4;
+      filter: blur(120px);
+    }
+    @media (min-width: 768px) { .hero-glow-inner { right: -6rem; } }
+    @media (prefers-reduced-motion: reduce) { .hero-glow { opacity: 0; } }
+
+    .hero-inner {
+      position: relative;
+      width: 100%;
+      max-width: var(--max-content);
+      margin-inline: auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    @media (min-width: 1024px) {
+      .hero-inner {
+        grid-template-columns: repeat(12, 1fr);
+        gap: 4rem;
+      }
+    }
+
+    .hero-copy { grid-column: 1 / -1; }
+    @media (min-width: 1024px) { .hero-copy { grid-column: 5 / span 8; } }
+
+    .hero-meta {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1.5rem;
+    }
+    @media (min-width: 768px) { .hero-meta { margin-bottom: 2rem; } }
+
+    .hero-meta .role { color: var(--text-secondary); }
+    .hero-meta .divider { margin-inline: 0.5rem; color: var(--text-muted); }
+
+    .hero-name {
+      font-family: var(--font-serif);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--accent);
+      line-height: 1.02;
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      margin-bottom: 2rem;
+    }
+    @media (min-width: 768px) { .hero-name { margin-bottom: 2.5rem; } }
+
+    .hero-tagline {
+      font-family: var(--font-sans);
+      font-size: 1.25rem;
+      line-height: 1.4;
+      color: var(--text-primary);
+      max-width: 38ch;
+      margin-bottom: 2.5rem;
+    }
+    @media (min-width: 768px) {
+      .hero-tagline {
+        font-size: 1.5rem;
+        margin-bottom: 3rem;
+      }
+    }
+    .hero-tagline .employer { color: var(--text-secondary); }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem 1.5rem;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--text-primary);
+      color: var(--bg-primary);
+      font-family: var(--font-sans);
+      font-weight: 600;
+      font-size: 0.875rem;
+      padding: 0.625rem 1.25rem;
+      border-radius: 4px;
+      transition: background var(--duration-fast) ease;
+    }
+    .btn-primary:hover { background: var(--text-secondary); }
+    .btn-primary svg { width: 1rem; height: 1rem; }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      transition: color var(--duration-fast) ease;
+    }
+    .btn-ghost:hover { color: var(--text-primary); }
+    .btn-ghost .arrow {
+      display: inline-block;
+      transition: transform var(--duration-fast) ease;
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .btn-ghost:hover .arrow { transform: translateX(2px); }
+    }
+
+    /* Hero artifact placeholder */
+    .hero-artifact { grid-column: 1 / -1; }
+    @media (min-width: 1024px) { .hero-artifact { grid-column: 1 / span 4; } }
+
+    .artifact-frame {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      width: 100%;
+      max-width: 24rem;
+      margin-inline: auto;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    @media (min-width: 1024px) { .artifact-frame { margin-left: auto; margin-right: 0; } }
+
+    .artifact-layer-1 {
+      position: absolute;
+      inset: 1.5rem;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+    }
+    .artifact-layer-2 {
+      position: absolute;
+      left: 3rem; right: 1.5rem; top: 3rem; bottom: 5rem;
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+    }
+    .artifact-layer-3 {
+      position: absolute;
+      left: 1.5rem; right: 3rem; bottom: 1.5rem;
+      height: 2.5rem;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+    }
+    .artifact-label {
+      position: absolute;
+      left: 1rem;
+      bottom: 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* ── FEATURED WORK ──────────────────────────────────────── */
+    .featured-work {
+      border-top: 1px solid var(--border);
+      padding-inline: var(--px-mobile);
+      padding-top: 4rem;
+      padding-bottom: 5rem;
+    }
+    @media (min-width: 768px) {
+      .featured-work {
+        padding-inline: var(--px-tablet);
+        padding-top: 6rem;
+        padding-bottom: 7rem;
+      }
+    }
+    @media (min-width: 1024px) {
+      .featured-work {
+        padding-inline: var(--px-desktop);
+        padding-top: 8rem;
+        padding-bottom: 8rem;
+      }
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    @media (min-width: 768px) { .section-header { margin-bottom: 3.5rem; } }
+
+    .section-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-heading {
+      font-family: var(--font-serif);
+      font-size: 1.875rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--accent);
+    }
+    @media (min-width: 768px) { .section-heading { font-size: 2.25rem; } }
+
+    .section-desc {
+      margin-top: 0.75rem;
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 52ch;
+    }
+
+    .all-work-link {
+      display: none;
+      align-items: center;
+      gap: 0.25rem;
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      transition: color var(--duration-fast) ease;
+      padding-bottom: 0.25rem;
+      white-space: nowrap;
+    }
+    @media (min-width: 640px) { .all-work-link { display: inline-flex; } }
+    .all-work-link:hover { color: var(--text-primary); }
+    .all-work-link .arrow {
+      display: inline-block;
+      transition: transform var(--duration-fast) ease;
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .all-work-link:hover .arrow { transform: translateX(2px); }
+    }
+
+    /* ── CASE STUDY CAROUSEL ─────────────────────────────── */
+    .featured-inner { max-width: var(--max-content); margin-inline: auto; }
+
+    .carousel { position: relative; }
+
+    .carousel-track-wrapper {
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+
+    .carousel-track {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr;
+    }
+
+    .carousel-slide {
+      grid-column: 1;
+      grid-row: 1;
+      min-width: 0;
+      background: var(--bg-elevated);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      pointer-events: none;
+      padding: 2rem 1.5rem;
+    }
+    @media (min-width: 768px) { .carousel-slide { padding: 2.5rem; } }
+    @media (min-width: 1024px) { .carousel-slide { padding: 3rem; } }
+
+    .slide-inner {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+    }
+
+    .slide-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .slide-discipline {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+    }
+
+    .slide-title {
+      font-family: var(--font-serif);
+      font-weight: 700;
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: var(--accent);
+      margin-top: 0.25rem;
+    }
+
+    .slide-subtitle {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--text-secondary);
+      line-height: 1.3;
+    }
+
+    .slide-client {
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      margin-top: 0.25rem;
+    }
+    .slide-client strong { font-weight: 600; color: var(--text-primary); }
+
+    .slide-quote {
+      background: var(--accent-subtle);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.875rem;
+      order: 2;
+    }
+
+    .slide-quote-text {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--text-primary);
+    }
+
+    .slide-quote-source {
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+    }
+
+    .slide-cs-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      font-family: var(--font-sans);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-top: 0.25rem;
+      transition: color var(--duration-fast) ease;
+    }
+    .slide-cs-link:hover { color: var(--accent-hover); }
+    @media (prefers-reduced-motion: no-preference) {
+      .slide-cs-link .arrow { display: inline-block; transition: transform var(--duration-fast) ease; }
+      .slide-cs-link:hover .arrow { transform: translateX(3px); }
+    }
+
+    .slide-columns {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      padding-top: 1.75rem;
+      border-top: 1px solid var(--border);
+    }
+    @media (min-width: 640px) { .slide-columns { grid-template-columns: repeat(3, 1fr); gap: 2rem; } }
+
+    .slide-col-label {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      margin-bottom: 0.625rem;
+    }
+
+    .slide-col-text {
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      line-height: 1.75;
+      color: var(--text-secondary);
+    }
+
+    /* Carousel controls */
+    .carousel-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 1.25rem;
+    }
+
+    .carousel-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.25rem;
+      height: 2.25rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--bg-primary);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: border-color var(--duration-fast) ease, color var(--duration-fast) ease;
+      flex-shrink: 0;
+    }
+    .carousel-btn:hover { border-color: var(--text-secondary); color: var(--text-primary); }
+    .carousel-btn:disabled { opacity: 0.35; cursor: default; pointer-events: none; }
+    .carousel-btn svg { width: 1rem; height: 1rem; }
+
+    .carousel-center { display: flex; align-items: center; gap: 1.25rem; }
+
+    .carousel-dots { display: flex; align-items: center; gap: 0.5rem; }
+
+    .carousel-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 9999px;
+      border: none;
+      padding: 0;
+      background: var(--border);
+      cursor: pointer;
+      transition: background var(--duration-fast) ease, transform var(--duration-fast) ease;
+    }
+    .carousel-dot.active { background: var(--accent); transform: scale(1.5); }
+
+    .carousel-slide.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* ── SCROLL REVEAL ─────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal[data-delay="1"] { transition-delay: 0.1s; }
+    .reveal[data-delay="2"] { transition-delay: 0.2s; }
+    .reveal[data-delay="3"] { transition-delay: 0.3s; }
+    .reveal[data-delay="4"] { transition-delay: 0.4s; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* ── CURSOR ─────────────────────────────────────────────── */
+    @media (pointer: fine) {
+      body.js-cursor * { cursor: none !important; }
+      .cursor {
+        position: fixed;
+        width: 10px; height: 10px;
+        background: var(--accent);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: width 0.25s ease, height 0.25s ease, opacity 0.2s ease;
+        display: flex; align-items: center; justify-content: center;
+        overflow: hidden;
+      }
+      .cursor.visible { opacity: 1; }
+      .cursor.expanded { width: 76px; height: 76px; }
+      .cursor-label {
+        font-family: var(--font-sans);
+        font-size: 0.5625rem;
+        font-weight: 700;
+        color: var(--bg-primary);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        opacity: 0;
+        transition: opacity 0.15s ease;
+        white-space: nowrap;
+        text-align: center;
+        line-height: 1.4;
+      }
+      .cursor.expanded .cursor-label { opacity: 1; }
+    }
+
+    .carousel-counter {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    /* ── SKILLS ───────────────────────────────────────────── */
+    .skills-section {
+      border-bottom: 1px solid var(--border);
+      padding-inline: var(--px-mobile);
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+    @media (min-width: 768px) {
+      .skills-section {
+        padding-inline: var(--px-tablet);
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+      }
+    }
+    @media (min-width: 1024px) {
+      .skills-section { padding-inline: var(--px-desktop); }
+    }
+
+    .skills-inner { max-width: var(--max-content); margin-inline: auto; }
+    .capabilities-heading { max-width: 22ch; margin-bottom: 1rem; }
+    .capabilities-intro { max-width: 62ch; font-size: 1rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 3rem; }
+    .capabilities-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; }
+    @media (min-width: 640px) { .capabilities-grid { grid-template-columns: repeat(2, 1fr); gap: 3rem 2.5rem; } }
+    @media (min-width: 1024px) { .capabilities-grid { gap: 3.5rem 4rem; } }
+    .capability-pillar { border-top: 1px solid var(--border); padding-top: 1rem; display: flex; flex-direction: column; }
+    .capability-index { font-family: var(--font-serif); font-size: 1.75rem; font-weight: 700; letter-spacing: -0.01em; color: var(--accent); margin-bottom: 1rem; }
+    .capability-title { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 700; line-height: 1.05; letter-spacing: -0.01em; color: var(--accent); margin-bottom: 1rem; }
+    .capability-description { font-size: 1rem; line-height: 1.65; color: var(--text-secondary); margin-bottom: 1.25rem; }
+    .capability-disciplines { font-family: var(--font-mono); font-size: 0.6875rem; line-height: 1.8; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.5rem; }
+    .capability-proof-wrap { margin-top: auto; padding-top: 0.25rem; }
+    .capability-proof-label { display: block; font-family: var(--font-mono); font-size: 0.625rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.35rem; }
+    .capability-proof { display: inline-flex; align-items: baseline; gap: 0.4rem; width: fit-content; color: var(--accent); font-size: 0.8125rem; font-weight: 600; }
+    .capability-proof strong { font-family: var(--font-serif); font-size: 1.25rem; }
+    .capability-proof:hover { color: var(--accent-hover); }
+    .capability-proof .arrow { transition: transform var(--duration-fast) ease; }
+    @media (prefers-reduced-motion: no-preference) { .capability-proof:hover .arrow { transform: translateX(2px); } }
+    .industries-line { border-top: 1px solid var(--border); margin-top: 3.5rem; padding-top: 1.25rem; display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; font-size: 0.8125rem; color: var(--text-muted); }
+    .industries-line strong { font-family: var(--font-mono); font-size: 0.6875rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-secondary); }
+
+    /* ── FOOTER ─────────────────────────────────────────────── */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      padding-inline: var(--px-mobile);
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+    @media (min-width: 768px) {
+      .site-footer {
+        padding-inline: var(--px-tablet);
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+      }
+    }
+    @media (min-width: 1024px) { .site-footer { padding-inline: var(--px-desktop); } }
+
+    .footer-inner { max-width: var(--max-content); margin-inline: auto; display: flex; flex-direction: column; gap: 0.75rem; }
+    @media (min-width: 640px) { .footer-inner { flex-direction: row; align-items: center; justify-content: space-between; } }
+
+    .footer-meta {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor" id="cursor" aria-hidden="true"><span class="cursor-label" id="cursor-label"></span></div>
+
+  <!-- NAV -->
+  <header class="site-nav">
+    <div class="container">
+      <a href="index.html" class="nav-brand" aria-label="Koi Hernandez — home">
+        Koi Hernandez<span class="dot">.</span>
+      </a>
+      <nav aria-label="Primary">
+        <ul class="nav-links">
+          <li><a href="work.html">Work</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- HERO -->
+    <section aria-labelledby="hero-name" class="hero">
+      <div class="hero-glow" aria-hidden="true">
+        <div class="hero-glow-inner"></div>
+      </div>
+
+      <div class="hero-inner">
+        <div class="hero-artifact">
+          <figure class="artifact-frame">
+            <img src="KoiHdez_Photo.png" alt="Koi Hernandez" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;" />
+          </figure>
+        </div>
+
+        <div class="hero-copy">
+          <p class="hero-meta">
+            <span class="role">Senior Experience Designer</span>
+            <span class="divider" aria-hidden="true">/</span>
+            Product&thinsp;·&thinsp;UX&thinsp;·&thinsp;Design Systems
+          </p>
+
+          <h1 id="hero-name" class="hero-name">Koi Hernandez</h1>
+
+          <p class="hero-tagline">
+            I take an agentic approach to design — enabling teams to move faster, think wider, and ship work that lasts. The kind of work that makes you wonder why it wasn't always this way.
+          </p>
+
+          <div class="hero-actions">
+            <a href="mailto:koi.hdez@gmail.com" class="btn-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                <path d="m22 7-10 5L2 7"/>
+              </svg>
+              Get in touch
+            </a>
+
+            <a href="#featured-work" class="btn-ghost">
+              See the work
+              <span class="arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section aria-labelledby="skills-heading" class="skills-section">
+      <div class="skills-inner">
+        <p class="section-kicker">Capabilities</p>
+        <h2 id="skills-heading" class="section-heading capabilities-heading">From ambiguity to shipped, scalable products.</h2>
+        <p class="capabilities-intro">I work across the full arc of an engagement—from finding the right problem and designing the experience to building the systems and team practices that help the work endure. Each capability below is grounded in outcomes from real client work.</p>
+        <div class="capabilities-grid">
+          <article class="capability-pillar">
+            <p class="capability-index">01</p>
+            <h3 class="capability-title">Shape the right product</h3>
+            <p class="capability-description">Turn ambiguous business problems into focused product direction through research, synthesis, and stakeholder alignment.</p>
+            <p class="capability-disciplines">Research · Strategy · Journey mapping</p>
+            <div class="capability-proof-wrap"><span class="capability-proof-label">Selected outcome</span><a class="capability-proof" href="life-sciences-marketplace.html"><strong>7,000+</strong> customers served <span class="arrow" aria-hidden="true">→</span></a></div>
+          </article>
+          <article class="capability-pillar">
+            <p class="capability-index">02</p>
+            <h3 class="capability-title">Design experiences that perform</h3>
+            <p class="capability-description">Lead complex experiences from early concepts through launch, balancing user needs, business goals, and technical constraints.</p>
+            <p class="capability-disciplines">Product design · Prototyping · Accessibility</p>
+            <div class="capability-proof-wrap"><span class="capability-proof-label">Selected outcome</span><a class="capability-proof" href="redefining-knowledge-management.html"><strong>2.0 → 4.3</strong> satisfaction <span class="arrow" aria-hidden="true">→</span></a></div>
+          </article>
+          <article class="capability-pillar">
+            <p class="capability-index">03</p>
+            <h3 class="capability-title">Build systems that scale</h3>
+            <p class="capability-description">Create reusable systems, workflows, and governance that improve consistency and help teams ship faster.</p>
+            <p class="capability-disciplines">Design systems · Governance · Design operations</p>
+            <div class="capability-proof-wrap"><span class="capability-proof-label">Selected outcome</span><a class="capability-proof" href="elevating-design-efficiency.html"><strong>50%</strong> faster design <span class="arrow" aria-hidden="true">→</span></a></div>
+          </article>
+          <article class="capability-pillar">
+            <p class="capability-index">04</p>
+            <h3 class="capability-title">Elevate the team</h3>
+            <p class="capability-description">Align cross-functional teams, facilitate better decisions, mentor designers, and introduce AI-enabled ways of working.</p>
+            <p class="capability-disciplines">Design leadership · Facilitation · Agentic design</p>
+            <div class="capability-proof-wrap"><span class="capability-proof-label">Selected outcome</span><a class="capability-proof" href="elevating-design-efficiency.html"><strong>3 teams</strong> one shared library <span class="arrow" aria-hidden="true">→</span></a></div>
+          </article>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <!-- FEATURED WORK -->
+    <section id="featured-work" aria-labelledby="featured-heading" class="featured-work">
+      <div class="featured-inner">
+        <div class="section-header">
+          <div>
+            <p class="section-kicker">Featured · 2022 — 2024</p>
+            <h2 id="featured-heading" class="section-heading">Selected case studies</h2>
+            <p class="section-desc">Work spanning financial services, life sciences, healthcare, and technology — each engagement shaped by a human-centered approach and a bias toward craft.</p>
+          </div>
+          <a href="work.html" class="all-work-link">
+            All work
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+
+        <div class="carousel" id="case-carousel" aria-roledescription="carousel" aria-label="Selected case studies">
+          <div class="carousel-track-wrapper">
+            <div class="carousel-track" id="carousel-track">
+
+              <!-- Slide 1: Banking on Design -->
+              <article class="carousel-slide active" aria-roledescription="slide" aria-label="1 of 5: Banking on Design">
+                <div class="slide-inner">
+                  <header class="slide-header">
+                    <p class="slide-discipline">Design Systems · UI Design</p>
+                    <h3 class="slide-title">Banking on Design</h3>
+                    <p class="slide-subtitle">Powering Efficiency Through Comprehensive Design Systems</p>
+                    <p class="slide-client"><strong>Client:</strong> A global investment bank and financial services company</p>
+                  </header>
+                  <aside class="slide-quote">
+                    <p class="slide-quote-text">"I learned a lot from working with Koi. Though he was the XD lead, my voice was heard as an equal. Koi acted as a mentor — teaching the ins and outs of Figma, design systems, and sprint planning. He deserves recognition for not only exceeding expectations, but also for making time for other team members."</p>
+                    <p class="slide-quote-source">Colleague Designer — Financial Services engagement</p>
+                    <a href="banking-on-design.html" class="slide-cs-link">View case study <span class="arrow" aria-hidden="true">→</span></a>
+                  </aside>
+                  <div class="slide-columns">
+                    <div class="slide-col">
+                      <p class="slide-col-label">Why</p>
+                      <p class="slide-col-text">The client needed to re-envision and simplify their call center agent experience across multiple product lines, agent workflows, and data platforms — creating a unified "North Star" platform for operational efficiency.</p>
+                    </div>
+                    <div class="slide-col">
+                      <p class="slide-col-label">What</p>
+                      <p class="slide-col-text">As Lead Designer for the Design Systems Pod, I built a cohesive design system ensuring consistency across multiple pods. I acted as design system SME, coordinated with development teams, and facilitated cross-program collaboration.</p>
+                    </div>
+                    <div class="slide-col">
+                      <p class="slide-col-label">Wow</p>
+                      <p class="slide-col-text">Delivered a holistic, mature design system complete with content and governance guidelines — giving the client full independence after our engagement ended. Strengthened cross-business-unit collaboration and enabled a cohesive digital experience.</p>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Slide 2: Life Sciences Marketplace -->
+              <article class="carousel-slide" aria-roledescription="slide" aria-label="2 of 5: Life Sciences Marketplace">
+                <div class="slide-inner">
+                  <header class="slide-header">
+                    <p class="slide-discipline">UX/UI Design · Product</p>
+                    <h3 class="slide-title">Life Sciences Marketplace</h3>
+                    <p class="slide-subtitle">Revolutionizing Retail Pharmacies with Intuitive Customer Journeys</p>
+                    <p class="slide-client"><strong>Client:</strong> A leading global pharmaceutical solutions organization</p>
+                  </header>
+                  <aside class="slide-quote">
+                    <p class="slide-quote-text">"Koi Hernandez has been so great to work with on the Marketplace project. He is thoughtful in his designs, asks the right questions, delivers great designs in an organized and thorough manner. He is forward thinking and has brought so much value to the design of this project."</p>
+                    <p class="slide-quote-source">Client Stakeholder — Life Sciences Marketplace</p>
+                    <a href="life-sciences-marketplace.html" class="slide-cs-link">View case study <span class="arrow" aria-hidden="true">→</span></a>
+                  </aside>
+                  <div class="slide-columns">
+                    <div class="slide-col">
+                      <p class="slide-col-label">Why</p>
+                      <p class="slide-col-text">The client identified a $1.5 billion missed opportunity — customers were buying front-of-house products from competitors after purchasing prescriptions through their platform. A Marketplace was needed to recapture that revenue within their own ecosystem.</p>
+                    </div>
+                    <div class="slide-col">
+                      <p class="slide-col-label">What</p>
+                      <p class="slide-col-text">Spearheaded the design of the core Marketplace experience — browsing, cart management, account and order management. Led user interviews to validate early designs and worked closely with developers and Product Owners to refine requirements.</p>
+                    </div>
+                    <div class="slide-col">
+                      <p class="slide-col-label">Wow</p>
+                      <p class="slide-col-text">The MVP launched to positive feedback, with customers highlighting ease of use. The Marketplace streamlined purchasing and laid the foundation for future initiatives — while also elevating the team's Design QA process and delivery efficiency.</p>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Slide 3: Elevating Design Efficiency -->
+              <article class="carousel-slide" aria-roledescription="slide" aria-label="3 of 5: Elevating Design Efficiency">
+                <div class="slide-inner">
+                  <header class="slide-header">
+                    <p class="slide-discipline">UX/UI Design · Product Design</p>
+                    <h3 class="slide-title">Elevating Design Efficiency</h3>
+                    <p class="slide-subtitle">Building a Unified Component Ecosystem</p>
+                    <p class="slide-client"><strong>Client:</strong> A leading U.S.-based financial services institution</p>
+                  </header>
+                  <aside class="slide-quote">
+                    <p class="slide-quote-text">"I'm using Form Builder and it's amazing! It's saving me so much time to create a flow that I can't even describe how happy I am that this is built. I love it!"</p>
+                    <p class="slide-quote-source">Designer — Financial Services engagement</p>
+                    <a href="elevating-design-efficiency.html" class="slide-cs-link">View case study <span class="arrow" aria-hidden="true">→</span></a>
+                  </aside>
+                  <div class="slide-columns">
+                    <div class="slide-col">
+                      <p class="slide-col-label">Why</p>
+                      <p class="slide-col-text">Designers across multiple teams lacked a centralized, reliable resource for building new experiences — causing inefficiencies and inconsistencies. The client needed a scalable design system as both a creative launchpad and a single source of truth.</p>
+                    </div>
+                    <div class="slide-col">
+                      <p class="slide-col-label">What</p>
+                      <p class="slide-col-text">Led the creation of a global Figma library shared across three teams, consolidating components, patterns, and templates. Introduced Figma variables for content switching and branching for version control — enabling rapid prototyping at scale.</p>
+                    </div>
+                    <div class="slide-col">
+                      <p class="slide-col-label">Wow</p>
+                      <p class="slide-col-text">Cut time-to-design in half through innovative components like Form Builder. The system became a trusted reference for designers, developers, and PMs. Delivered a multi-library architecture of five interconnected libraries serving distinct purposes.</p>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Slide 4: Life Science Retailer E-commerce -->
+              <article class="carousel-slide" aria-roledescription="slide" aria-label="4 of 5: Life Science Retailer E-commerce">
+                <div class="slide-inner">
+                  <header class="slide-header">
+                    <p class="slide-discipline">UX/UI Design</p>
+                    <h3 class="slide-title">Life Science Retailer E-commerce</h3>
+                    <p class="slide-subtitle">Streamlining Life Sciences Shopping With Intuitive Design</p>
+                    <p class="slide-client"><strong>Client:</strong> A company developing and selling products for biomedical testing and life sciences research</p>
+                  </header>
+                  <aside class="slide-quote">
+                    <p class="slide-quote-text">"Koi has done an outstanding job organizing the design discovery sessions with the client. He had to start from a blank slate and extract design requirements. Even after several weeks of further technical discoveries, the designs Koi provided are holding solid."</p>
+                    <p class="slide-quote-source">Engagement Lead — Life Sciences Retail</p>
+                    <a href="life-science-retailer-ecommerce.html" class="slide-cs-link">View case study <span class="arrow" aria-hidden="true">→</span></a>
+                  </aside>
+                  <div class="slide-columns">
+                    <div class="slide-col">
+                      <p class="slide-col-label">Why</p>
+                      <p class="slide-col-text">Since launching their Storefront in 2018, the client's shopping experience had grown outdated. Customers cited complex specialized ordering, difficulty managing accounts, tracking orders, and scheduling deliveries.</p>
+                    </div>
+                    <div class="slide-col">
+                      <p class="slide-col-label">What</p>
+                      <p class="slide-col-text">As Design Lead, organized discovery workshops and drove weekly deliverables. Identified business needs, developed wireframes and high-fidelity designs, produced prototypes, and led usability interviews — all within a compressed six-week timeline.</p>
+                    </div>
+                    <div class="slide-col">
+                      <p class="slide-col-label">Wow</p>
+                      <p class="slide-col-text">Delivered beyond the initial scope of 18 screens in six weeks — and created a foundational design system for future teams. The designs are still in production today, proving their lasting value and effectiveness.</p>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Slide 5: Redefining Knowledge Management -->
+              <article class="carousel-slide" aria-roledescription="slide" aria-label="5 of 5: Redefining Knowledge Management">
+                <div class="slide-inner">
+                  <header class="slide-header">
+                    <p class="slide-discipline">UX Design · Human-Centered Design</p>
+                    <h3 class="slide-title">Redefining Knowledge Management</h3>
+                    <p class="slide-subtitle">Elevating Tech With UX Innovation &amp; Efficiency</p>
+                    <p class="slide-client"><strong>Client:</strong> A leading global technology company specializing in online advertising, cloud computing, and artificial intelligence</p>
+                  </header>
+                  <aside class="slide-quote">
+                    <p class="slide-quote-text">"Koi has a calm demeanor which proved to be useful when dealing with stakeholders who constantly change their minds. Despite unclear feedback and constant design changes, Koi always remained level headed and provided the best design recommendations he could at any given moment."</p>
+                    <p class="slide-quote-source">Colleague Designer — Big Tech engagement</p>
+                    <a href="redefining-knowledge-management.html" class="slide-cs-link">View case study <span class="arrow" aria-hidden="true">→</span></a>
+                  </aside>
+                  <div class="slide-columns">
+                    <div class="slide-col">
+                      <p class="slide-col-label">Why</p>
+                      <p class="slide-col-text">The client's technical consultant group lacked a central repository for solutions, leading to outdated content, effort duplication, and poor discoverability. A unified platform with a single source of truth was critical.</p>
+                    </div>
+                    <div class="slide-col">
+                      <p class="slide-col-label">What</p>
+                      <p class="slide-col-text">Collaborated with UX and visual designers to create a unified solutions hub with an underlying CMS. Developed wireframes and high-fidelity mockups, conducted usability tests across regions and organizational levels, and aligned stakeholders on goals.</p>
+                    </div>
+                    <div class="slide-col">
+                      <p class="slide-col-label">Wow</p>
+                      <p class="slide-col-text">Site ratings improved from 2 to 4.3 out of 5 stars. Reduced repetitive tasks, increased transparency, and elevated the team's brand identity. The redesign established a new visual standard and blueprint for future product development.</p>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+            </div><!-- /carousel-track -->
+          </div><!-- /carousel-track-wrapper -->
+
+          <div class="carousel-controls">
+            <button class="carousel-btn" id="carousel-prev" aria-label="Previous case study">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <div class="carousel-center">
+              <div class="carousel-dots" role="tablist" aria-label="Case studies">
+                <button role="tab" aria-selected="true"  class="carousel-dot active" data-index="0" aria-label="Banking on Design"></button>
+                <button role="tab" aria-selected="false" class="carousel-dot"        data-index="1" aria-label="Life Sciences Marketplace"></button>
+                <button role="tab" aria-selected="false" class="carousel-dot"        data-index="2" aria-label="Elevating Design Efficiency"></button>
+                <button role="tab" aria-selected="false" class="carousel-dot"        data-index="3" aria-label="Life Science Retailer E-commerce"></button>
+                <button role="tab" aria-selected="false" class="carousel-dot"        data-index="4" aria-label="Redefining Knowledge Management"></button>
+              </div>
+              <span class="carousel-counter"><span id="carousel-current">01</span> / 05</span>
+            </div>
+            <button class="carousel-btn" id="carousel-next" aria-label="Next case study">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+        </div><!-- /carousel -->
+      </div><!-- /featured-inner -->
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-meta">Slalom · Washington, DC</p>
+      <p class="footer-meta">© 2026 Koi Hernandez</p>
+    </div>
+  </footer>
+  <script>
+  (function () {
+    /* ── 1. CAROUSEL (crossfade) ───────────────────────────── */
+    var track = document.getElementById('carousel-track');
+    if (track) {
+      var slides   = Array.from(track.querySelectorAll('.carousel-slide'));
+      var dots     = Array.from(document.querySelectorAll('.carousel-dot'));
+      var prevBtn  = document.getElementById('carousel-prev');
+      var nextBtn  = document.getElementById('carousel-next');
+      var currentEl = document.getElementById('carousel-current');
+      var total    = slides.length;
+      var current  = 0;
+
+      function goTo(index) {
+        current = ((index % total) + total) % total;
+        slides.forEach(function (s, i) { s.classList.toggle('active', i === current); });
+        dots.forEach(function (d, i) {
+          var on = i === current;
+          d.classList.toggle('active', on);
+          d.setAttribute('aria-selected', String(on));
+        });
+        if (currentEl) currentEl.textContent = String(current + 1).padStart(2, '0');
+      }
+
+      prevBtn.addEventListener('click', function () { goTo(current - 1); });
+      nextBtn.addEventListener('click', function () { goTo(current + 1); });
+      dots.forEach(function (dot) {
+        dot.addEventListener('click', function () { goTo(parseInt(dot.dataset.index, 10)); });
+      });
+      document.getElementById('case-carousel').addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowLeft')  { e.preventDefault(); goTo(current - 1); }
+        if (e.key === 'ArrowRight') { e.preventDefault(); goTo(current + 1); }
+      });
+    }
+
+    /* ── 2. SCROLL REVEAL ─────────────────────────────────── */
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      var revealTargets = [
+        { sel: '.capability-pillar', stagger: true },
+        { sel: '.carousel',          stagger: false },
+        { sel: '.footer-inner',      stagger: false },
+        { sel: '.section-header',    stagger: false },
+      ];
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      revealTargets.forEach(function (def) {
+        document.querySelectorAll(def.sel).forEach(function (el, i) {
+          el.classList.add('reveal');
+          if (def.stagger) el.dataset.delay = Math.min(i + 1, 4);
+          observer.observe(el);
+        });
+      });
+    }
+
+    /* ── 3. CURSOR DOT + "READ" EXPAND ───────────────────── */
+    var cursor      = document.getElementById('cursor');
+    var cursorLabel = document.getElementById('cursor-label');
+    if (cursor && window.matchMedia('(pointer: fine)').matches &&
+        !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+
+      document.body.classList.add('js-cursor');
+
+      var mouseX = 0, mouseY = 0, curX = 0, curY = 0;
+
+      document.addEventListener('mousemove', function (e) {
+        mouseX = e.clientX; mouseY = e.clientY;
+        cursor.classList.add('visible');
+      });
+      document.addEventListener('mouseleave', function () {
+        cursor.classList.remove('visible');
+      });
+
+      (function loop() {
+        curX += (mouseX - curX) * 0.14;
+        curY += (mouseY - curY) * 0.14;
+        cursor.style.left = curX + 'px';
+        cursor.style.top  = curY + 'px';
+        requestAnimationFrame(loop);
+      })();
+
+      // Expand on case study links
+      document.querySelectorAll('.slide-cs-link, a[href$=".html"]:not(.nav-brand):not(.nav-links a)').forEach(function (el) {
+        el.addEventListener('mouseenter', function () {
+          cursor.classList.add('expanded');
+          if (cursorLabel) { cursorLabel.innerHTML = 'Read<br>→'; }
+        });
+        el.addEventListener('mouseleave', function () {
+          cursor.classList.remove('expanded');
+          if (cursorLabel) cursorLabel.innerHTML = '';
+        });
+      });
+    }
+
+    /* ── 5. COPY EMAIL ────────────────────────────────────── */
+    document.querySelectorAll('a[href="mailto:koi.hdez@gmail.com"]').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        if (!navigator.clipboard) return; // fallback: let mailto open
+        e.preventDefault();
+        navigator.clipboard.writeText('koi.hdez@gmail.com').then(function () {
+          var saved = link.innerHTML;
+          var savedColor = link.style.color;
+          link.textContent = 'Copied ✓';
+          link.style.color = 'var(--accent)';
+          setTimeout(function () {
+            link.innerHTML = saved;
+            link.style.color = savedColor;
+          }, 2000);
+        }).catch(function () {
+          window.location.href = 'mailto:koi.hdez@gmail.com';
+        });
+      });
+    });
+
+  })();
+  </script>
+
+</body>
+</html>
