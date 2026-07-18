@@ -525,19 +525,19 @@
       if (lastFocused) lastFocused.focus();
     }
 
-    document.querySelectorAll('.case-card[data-modal]').forEach(function(card) {
-      card.addEventListener('click', function(e) {
+    // Event delegation — catches clicks on any child element inside the card
+    document.addEventListener('click', function(e) {
+      var card = e.target.closest('.case-card[data-modal]');
+      if (card) {
         e.preventDefault();
         lastFocused = card;
         openModal(card.dataset.modal);
-      });
+        return;
+      }
+      if (e.target === backdrop) closeModal();
     });
 
     closeBtn.addEventListener('click', closeModal);
-
-    backdrop.addEventListener('click', function(e) {
-      if (e.target === backdrop) closeModal();
-    });
 
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape' && !backdrop.hidden) closeModal();
