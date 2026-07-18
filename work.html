@@ -91,8 +91,23 @@
     .case-card {
       display: flex; flex-direction: column; height: 100%;
       background: var(--bg-elevated); border: 1px solid var(--border);
-      border-radius: 6px; padding: 1.75rem;
+      border-radius: 10px; padding: 1.25rem;
       transition: border-color var(--duration-fast) ease;
+      gap: 1rem;
+    }
+    @media (min-width: 768px) {
+      .case-card {
+        padding: 1.5rem;
+        gap: 1.25rem;
+      }
+    }
+    @media (min-width: 1024px) {
+      .case-card {
+        display: grid;
+        grid-template-columns: minmax(220px, 290px) minmax(0, 1fr);
+        align-items: start;
+        padding: 1.75rem;
+      }
     }
     @media (prefers-reduced-motion: no-preference) {
       .case-card { transition: border-color var(--duration-fast) ease, transform var(--duration-fast) ease; }
@@ -102,23 +117,36 @@
 
     .card-thumbnail {
       position: relative; aspect-ratio: 16 / 9; width: 100%;
-      margin-bottom: 1.75rem; background: var(--bg-subtle);
-      border: 1px solid var(--border); border-radius: 4px; overflow: hidden;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border); border-radius: 6px; overflow: hidden;
+      flex-shrink: 0;
     }
-    .card-thumb-inner { position: absolute; inset: 0.75rem; background: var(--bg-primary); border: 1px solid var(--border); border-radius: 2px; }
+    @media (min-width: 1024px) {
+      .card-thumbnail { min-height: 100%; }
+    }
+    .card-thumb-inner { position: absolute; inset: 0.75rem; background: var(--bg-primary); border: 1px solid var(--border); border-radius: 3px; }
     .card-thumb-line { position: absolute; left: 1.5rem; height: 6px; background: var(--border); border-radius: 9999px; }
     .card-thumb-line-1 { right: 1.5rem; top: 1.5rem; }
     .card-thumb-line-2 { right: 2.5rem; top: 2.5rem; }
     .card-thumb-line-3 { right: 3.5rem; top: 3.5rem; }
     .card-thumb-index { position: absolute; bottom: 0.75rem; right: 0.75rem; font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
 
-    .card-meta { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.75rem; }
+    .card-content {
+      display: flex; flex-direction: column;
+      gap: 0.9rem; flex: 1;
+      min-width: 0;
+    }
+    @media (min-width: 1024px) {
+      .card-content { gap: 1rem; padding-left: 0.25rem; }
+    }
 
-    .card-title { font-family: var(--font-serif); font-size: 1.375rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.75rem; text-wrap: balance; }
+    .card-meta { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
 
-    .card-desc { font-family: var(--font-sans); font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.65; margin-bottom: 1.5rem; max-width: 44ch; }
+    .card-title { font-family: var(--font-serif); font-size: clamp(1.35rem, 2.4vw, 1.75rem); font-weight: 600; color: var(--text-primary); text-wrap: balance; }
 
-    .card-tags { display: flex; flex-wrap: wrap; gap: 0.375rem; margin-bottom: 1.5rem; }
+    .card-desc { font-family: var(--font-sans); font-size: 0.95rem; color: var(--text-secondary); line-height: 1.65; max-width: 44ch; }
+
+    .card-tags { display: flex; flex-wrap: wrap; gap: 0.375rem; margin-top: 0.25rem; }
     .card-tag { font-family: var(--font-mono); font-size: 0.6875rem; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text-secondary); padding: 0.2rem 0.5rem; border-radius: 2px; }
 
     .card-footer { margin-top: auto; display: flex; align-items: center; justify-content: space-between; padding-top: 1rem; border-top: 1px solid var(--border); }
@@ -181,20 +209,22 @@
                 <div class="card-thumb-line card-thumb-line-3"></div>
                 <span class="card-thumb-index">01</span>
               </div>
-              <p class="card-meta">Design Systems · Financial Services</p>
-              <h2 class="card-title">Banking on Design</h2>
-              <p class="card-desc">A holistic design system that unified multiple design pods for a global investment bank — and left a governance framework the client could run independently.</p>
-              <div class="card-tags">
-                <span class="card-tag">Design Systems</span>
-                <span class="card-tag">UI Design</span>
-              </div>
-              <div class="card-footer">
-                <span class="card-label">Case study</span>
-                <span class="card-arrow" aria-hidden="true">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
-                  </svg>
-                </span>
+              <div class="card-content">
+                <p class="card-meta">Design Systems · Financial Services</p>
+                <h2 class="card-title">Banking on Design</h2>
+                <p class="card-desc">A holistic design system that unified multiple design pods for a global investment bank — and left a governance framework the client could run independently.</p>
+                <div class="card-tags">
+                  <span class="card-tag">Design Systems</span>
+                  <span class="card-tag">UI Design</span>
+                </div>
+                <div class="card-footer">
+                  <span class="card-label">Case study</span>
+                  <span class="card-arrow" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
+                    </svg>
+                  </span>
+                </div>
               </div>
             </a>
           </li>
@@ -208,21 +238,23 @@
                 <div class="card-thumb-line card-thumb-line-3"></div>
                 <span class="card-thumb-index">02</span>
               </div>
-              <p class="card-meta">Product · UX · Life Sciences</p>
-              <h2 class="card-title">Life Sciences Marketplace</h2>
-              <p class="card-desc">A marketplace built from zero that serves 7,000+ independent pharmacies and closes a $1.5B revenue gap.</p>
-              <div class="card-tags">
-                <span class="card-tag">Product Design</span>
-                <span class="card-tag">UX</span>
-                <span class="card-tag">eCommerce</span>
-              </div>
-              <div class="card-footer">
-                <span class="card-label">Case study</span>
-                <span class="card-arrow" aria-hidden="true">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
-                  </svg>
-                </span>
+              <div class="card-content">
+                <p class="card-meta">Product · UX · Life Sciences</p>
+                <h2 class="card-title">Life Sciences Marketplace</h2>
+                <p class="card-desc">A marketplace built from zero that serves 7,000+ independent pharmacies and closes a $1.5B revenue gap.</p>
+                <div class="card-tags">
+                  <span class="card-tag">Product Design</span>
+                  <span class="card-tag">UX</span>
+                  <span class="card-tag">eCommerce</span>
+                </div>
+                <div class="card-footer">
+                  <span class="card-label">Case study</span>
+                  <span class="card-arrow" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
+                    </svg>
+                  </span>
+                </div>
               </div>
             </a>
           </li>
@@ -236,21 +268,23 @@
                 <div class="card-thumb-line card-thumb-line-3"></div>
                 <span class="card-thumb-index">03</span>
               </div>
-              <p class="card-meta">UX · Research · Technology</p>
-              <h2 class="card-title">Redefining Knowledge Management</h2>
-              <p class="card-desc">An internal knowledge hub for a Big Tech client — satisfaction ratings moved from 2 to 4.3 out of 5.</p>
-              <div class="card-tags">
-                <span class="card-tag">UX Design</span>
-                <span class="card-tag">Research</span>
-                <span class="card-tag">HCD</span>
-              </div>
-              <div class="card-footer">
-                <span class="card-label">Case study</span>
-                <span class="card-arrow" aria-hidden="true">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
-                  </svg>
-                </span>
+              <div class="card-content">
+                <p class="card-meta">UX · Research · Technology</p>
+                <h2 class="card-title">Redefining Knowledge Management</h2>
+                <p class="card-desc">An internal knowledge hub for a Big Tech client — satisfaction ratings moved from 2 to 4.3 out of 5.</p>
+                <div class="card-tags">
+                  <span class="card-tag">UX Design</span>
+                  <span class="card-tag">Research</span>
+                  <span class="card-tag">HCD</span>
+                </div>
+                <div class="card-footer">
+                  <span class="card-label">Case study</span>
+                  <span class="card-arrow" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
+                    </svg>
+                  </span>
+                </div>
               </div>
             </a>
           </li>
@@ -264,21 +298,23 @@
                 <div class="card-thumb-line card-thumb-line-3"></div>
                 <span class="card-thumb-index">04</span>
               </div>
-              <p class="card-meta">UX · UI · Design Systems · 6 weeks</p>
-              <h2 class="card-title">Life Science Retailer E-commerce</h2>
-              <p class="card-desc">Redesigning a global life sciences retailer's checkout and account experience in six weeks — designs that are still holding up years later.</p>
-              <div class="card-tags">
-                <span class="card-tag">UX Design</span>
-                <span class="card-tag">UI Design</span>
-                <span class="card-tag">Design Systems</span>
-              </div>
-              <div class="card-footer">
-                <span class="card-label">Case study</span>
-                <span class="card-arrow" aria-hidden="true">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
-                  </svg>
-                </span>
+              <div class="card-content">
+                <p class="card-meta">UX · UI · Design Systems · 6 weeks</p>
+                <h2 class="card-title">Life Science Retailer E-commerce</h2>
+                <p class="card-desc">Redesigning a global life sciences retailer's checkout and account experience in six weeks — designs that are still holding up years later.</p>
+                <div class="card-tags">
+                  <span class="card-tag">UX Design</span>
+                  <span class="card-tag">UI Design</span>
+                  <span class="card-tag">Design Systems</span>
+                </div>
+                <div class="card-footer">
+                  <span class="card-label">Case study</span>
+                  <span class="card-arrow" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
+                    </svg>
+                  </span>
+                </div>
               </div>
             </a>
           </li>
@@ -292,21 +328,23 @@
                 <div class="card-thumb-line card-thumb-line-3"></div>
                 <span class="card-thumb-index">05</span>
               </div>
-              <p class="card-meta">Design Systems · Financial Services</p>
-              <h2 class="card-title">Elevating Design Efficiency</h2>
-              <p class="card-desc">A unified Figma component ecosystem that cut time-to-design in half for a leading financial services institution.</p>
-              <div class="card-tags">
-                <span class="card-tag">Design Systems</span>
-                <span class="card-tag">UI Design</span>
-                <span class="card-tag">Product Design</span>
-              </div>
-              <div class="card-footer">
-                <span class="card-label">Case study</span>
-                <span class="card-arrow" aria-hidden="true">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
-                  </svg>
-                </span>
+              <div class="card-content">
+                <p class="card-meta">Design Systems · Financial Services</p>
+                <h2 class="card-title">Elevating Design Efficiency</h2>
+                <p class="card-desc">A unified Figma component ecosystem that cut time-to-design in half for a leading financial services institution.</p>
+                <div class="card-tags">
+                  <span class="card-tag">Design Systems</span>
+                  <span class="card-tag">UI Design</span>
+                  <span class="card-tag">Product Design</span>
+                </div>
+                <div class="card-footer">
+                  <span class="card-label">Case study</span>
+                  <span class="card-arrow" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
+                    </svg>
+                  </span>
+                </div>
               </div>
             </a>
           </li>
