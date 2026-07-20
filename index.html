@@ -657,6 +657,7 @@
       padding-inline: var(--px-mobile);
       padding-top: 3.5rem;
       padding-bottom: 3.5rem;
+      scroll-margin-top: 3.5rem;
     }
     @media (min-width: 768px) {
       .about-intro {
@@ -670,6 +671,15 @@
     }
 
     .about-intro-inner { max-width: var(--max-content); margin-inline: auto; }
+
+    .about-intro-meta {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1.25rem;
+    }
 
     .about-intro-lede {
       font-family: var(--font-serif);
@@ -690,21 +700,28 @@
       max-width: 56ch;
     }
 
-    .about-intro-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.375rem;
-      margin-top: 1.25rem;
-      font-family: var(--font-sans);
-      font-size: 0.875rem;
+    .about-intro-skills-label {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
       font-weight: 600;
-      color: var(--accent);
-      transition: color var(--duration-fast) ease;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 2rem;
+      margin-bottom: 0.875rem;
     }
-    .about-intro-link:hover { color: var(--accent-hover); }
-    .about-intro-link .arrow { display: inline-block; transition: transform var(--duration-fast) ease; }
-    @media (prefers-reduced-motion: no-preference) {
-      .about-intro-link:hover .arrow { transform: translateX(2px); }
+
+    .about-intro-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; max-width: 60ch; }
+
+    .about-pill {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.02em;
+      color: var(--text-secondary);
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 9999px;
+      padding: 0.3rem 0.75rem;
     }
 
     /* ── SKILLS ───────────────────────────────────────────── */
@@ -786,8 +803,8 @@
       <nav aria-label="Primary">
         <ul class="nav-links">
           <li><a href="work.html">Work</a></li>
-          <li><a href="/about">About</a></li>
-          <li><a href="/contact">Contact</a></li>
+          <li><a href="#about-intro">About</a></li>
+          <li><a href="mailto:koi.hdez@gmail.com">Contact</a></li>
         </ul>
       </nav>
     </div>
@@ -841,12 +858,27 @@
     </section>
 
     <!-- ABOUT INTRO -->
-    <section aria-labelledby="about-intro-lede" class="about-intro">
+    <section id="about-intro" aria-labelledby="about-intro-lede" class="about-intro">
       <div class="about-intro-inner">
         <p class="section-kicker">About</p>
+        <p class="about-intro-meta">Senior Experience Designer · Slalom, 2021—Present</p>
         <p id="about-intro-lede" class="about-intro-lede">I listen before I speak, and I design the same way — working to understand the problem from every angle before reaching for a solution.</p>
         <p class="about-intro-body">My peers call me diligent, a quiet storm, and easy to work with. I take the craft seriously, and it shows in how I collaborate as much as in what I ship.</p>
-        <a href="about.html" class="about-intro-link">More about me <span class="arrow" aria-hidden="true">→</span></a>
+        <p class="about-intro-skills-label">Skills &amp; tools</p>
+        <ul class="about-intro-pills">
+          <li class="about-pill">Research</li>
+          <li class="about-pill">Strategy</li>
+          <li class="about-pill">Journey Mapping</li>
+          <li class="about-pill">Product Design</li>
+          <li class="about-pill">Prototyping</li>
+          <li class="about-pill">Accessibility</li>
+          <li class="about-pill">Design Systems</li>
+          <li class="about-pill">Governance</li>
+          <li class="about-pill">Design Operations</li>
+          <li class="about-pill">Design Leadership</li>
+          <li class="about-pill">Facilitation</li>
+          <li class="about-pill">Agentic Design</li>
+        </ul>
       </div>
     </section>
 
