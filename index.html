@@ -28,6 +28,15 @@
       --accent-subtle:#E4EAE1;
       --border:       #E0DDD9;
 
+      --bg-dark:          #1D2019;
+      --bg-dark-elevated: #282B22;
+      --border-dark:      #3A3D33;
+      --text-dark-primary:  #F5F3ED;
+      --text-dark-secondary:#BEBCAF;
+      --text-dark-muted:    #8B8D7E;
+      --accent-dark:        #A3B896;
+      --accent-dark-hover:  #B9CBAE;
+
       --max-content:  1100px;
       --max-prose:    680px;
       --px-mobile:    24px;
@@ -724,6 +733,40 @@
       padding: 0.3rem 0.75rem;
     }
 
+    /* ── DARK SECTION THEME ──────────────────────────────────
+       Applied to alternating sections (.about-intro, .featured-work)
+       via a `.section-dark` modifier. Scoped overrides below re-tint
+       shared classes only when nested inside a dark section — the
+       same classes keep their light styling everywhere else. ─────── */
+    .section-dark { background: var(--bg-dark); color: var(--text-dark-primary); }
+
+    .section-dark .section-kicker { color: var(--text-dark-muted); }
+    .section-dark .about-intro-meta { color: var(--text-dark-muted); }
+    .section-dark .about-intro-lede { color: var(--accent-dark); }
+    .section-dark .about-intro-body { color: var(--text-dark-secondary); }
+    .section-dark .about-intro-skills-label { color: var(--text-dark-muted); }
+    .section-dark .about-pill {
+      background: var(--bg-dark-elevated);
+      border-color: var(--border-dark);
+      color: var(--text-dark-secondary);
+    }
+
+    .section-dark .section-heading { color: var(--accent-dark); }
+    .section-dark .section-desc { color: var(--text-dark-secondary); }
+    .section-dark .all-work-link { color: var(--text-dark-secondary); }
+    .section-dark .all-work-link:hover { color: var(--text-dark-primary); }
+
+    .section-dark .carousel-track-wrapper { border-color: var(--border-dark); }
+    .section-dark .carousel-btn {
+      background: var(--bg-dark-elevated);
+      border-color: var(--border-dark);
+      color: var(--text-dark-secondary);
+    }
+    .section-dark .carousel-btn:hover { border-color: var(--text-dark-secondary); color: var(--text-dark-primary); }
+    .section-dark .carousel-dot { background: var(--border-dark); }
+    .section-dark .carousel-dot.active { background: var(--accent-dark); }
+    .section-dark .carousel-counter { color: var(--text-dark-muted); }
+
     /* ── SKILLS ───────────────────────────────────────────── */
     .skills-section {
       border-bottom: 1px solid var(--border);
@@ -858,7 +901,7 @@
     </section>
 
     <!-- ABOUT INTRO -->
-    <section id="about-intro" aria-labelledby="about-intro-lede" class="about-intro">
+    <section id="about-intro" aria-labelledby="about-intro-lede" class="about-intro section-dark">
       <div class="about-intro-inner">
         <p class="section-kicker">About</p>
         <p class="about-intro-meta">Senior Experience Designer · Slalom, 2021—Present</p>
@@ -924,7 +967,7 @@
 
     <!-- TESTIMONIALS -->
     <!-- FEATURED WORK -->
-    <section id="featured-work" aria-labelledby="featured-heading" class="featured-work">
+    <section id="featured-work" aria-labelledby="featured-heading" class="featured-work section-dark">
       <div class="featured-inner">
         <div class="section-header">
           <div>
