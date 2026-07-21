@@ -679,15 +679,29 @@
       .about-intro { padding-inline: var(--px-desktop); }
     }
 
-    .about-intro-inner { max-width: var(--max-content); margin-inline: auto; }
+    .about-intro-inner {
+      max-width: var(--max-content);
+      margin-inline: auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    @media (min-width: 768px) {
+      .about-intro-inner { grid-template-columns: 1fr 280px; gap: 3rem; align-items: start; }
+    }
+    @media (min-width: 1024px) {
+      .about-intro-inner { grid-template-columns: 1fr 320px; gap: 4rem; }
+    }
 
-    .about-intro-meta {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 1.25rem;
+    .about-intro-skills {
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+    }
+    @media (min-width: 768px) {
+      .about-intro-skills { border-top: none; border-left: 1px solid var(--border); padding-top: 0; padding-left: 2rem; }
+    }
+    @media (min-width: 1024px) {
+      .about-intro-skills { padding-left: 2.5rem; }
     }
 
     .about-intro-lede {
@@ -716,11 +730,10 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--text-muted);
-      margin-top: 2rem;
       margin-bottom: 0.875rem;
     }
 
-    .about-intro-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; max-width: 60ch; }
+    .about-intro-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 
     .about-pill {
       font-family: var(--font-mono);
@@ -741,10 +754,10 @@
     .section-dark { background: var(--bg-dark); color: var(--text-dark-primary); }
 
     .section-dark .section-kicker { color: var(--text-dark-muted); }
-    .section-dark .about-intro-meta { color: var(--text-dark-muted); }
     .section-dark .about-intro-lede { color: var(--accent-dark); }
     .section-dark .about-intro-body { color: var(--text-dark-secondary); }
     .section-dark .about-intro-skills-label { color: var(--text-dark-muted); }
+    .section-dark .about-intro-skills { border-color: var(--border-dark); }
     .section-dark .about-pill {
       background: var(--bg-dark-elevated);
       border-color: var(--border-dark);
@@ -903,25 +916,28 @@
     <!-- ABOUT INTRO -->
     <section id="about-intro" aria-labelledby="about-intro-lede" class="about-intro section-dark">
       <div class="about-intro-inner">
-        <p class="section-kicker">About</p>
-        <p class="about-intro-meta">Senior Experience Designer · Slalom, 2021—Present</p>
-        <p id="about-intro-lede" class="about-intro-lede">I listen before I speak, and I design the same way — working to understand the problem from every angle before reaching for a solution.</p>
-        <p class="about-intro-body">My peers call me diligent, a quiet storm, and easy to work with. I take the craft seriously, and it shows in how I collaborate as much as in what I ship.</p>
-        <p class="about-intro-skills-label">Skills &amp; tools</p>
-        <ul class="about-intro-pills">
-          <li class="about-pill">Research</li>
-          <li class="about-pill">Strategy</li>
-          <li class="about-pill">Journey Mapping</li>
-          <li class="about-pill">Product Design</li>
-          <li class="about-pill">Prototyping</li>
-          <li class="about-pill">Accessibility</li>
-          <li class="about-pill">Design Systems</li>
-          <li class="about-pill">Governance</li>
-          <li class="about-pill">Design Operations</li>
-          <li class="about-pill">Design Leadership</li>
-          <li class="about-pill">Facilitation</li>
-          <li class="about-pill">Agentic Design</li>
-        </ul>
+        <div class="about-intro-copy">
+          <p class="section-kicker">About</p>
+          <p id="about-intro-lede" class="about-intro-lede">I listen before I speak, and I design the same way — working to understand the problem from every angle before reaching for a solution.</p>
+          <p class="about-intro-body">My peers call me diligent, a quiet storm, and easy to work with. I take the craft seriously, and it shows in how I collaborate as much as in what I ship.</p>
+        </div>
+        <div class="about-intro-skills">
+          <p class="about-intro-skills-label">Skills &amp; tools</p>
+          <ul class="about-intro-pills">
+            <li class="about-pill">Research</li>
+            <li class="about-pill">Strategy</li>
+            <li class="about-pill">Journey Mapping</li>
+            <li class="about-pill">Product Design</li>
+            <li class="about-pill">Prototyping</li>
+            <li class="about-pill">Accessibility</li>
+            <li class="about-pill">Design Systems</li>
+            <li class="about-pill">Governance</li>
+            <li class="about-pill">Design Operations</li>
+            <li class="about-pill">Design Leadership</li>
+            <li class="about-pill">Facilitation</li>
+            <li class="about-pill">Agentic Design</li>
+          </ul>
+        </div>
       </div>
     </section>
 
