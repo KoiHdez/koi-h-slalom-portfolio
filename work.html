@@ -171,21 +171,21 @@
     @keyframes modal-slide-in { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
     .modal-close { position:absolute;top:1rem;right:1rem;background:none;border:none;cursor:pointer;color:var(--text-muted);padding:.25rem;border-radius:4px;line-height:0;transition:color var(--duration-fast); }
     .modal-close:hover { color:var(--text-primary); }
-    .modal-discipline { font-family:var(--font-mono);font-size:.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem; }
-    .modal-title { font-family:var(--font-serif);font-size:clamp(1.75rem,3vw,2.5rem);font-weight:700;color:var(--text-primary);margin-bottom:.4rem;line-height:1.1; }
-    .modal-subtitle { font-family:var(--font-serif);font-style:italic;font-size:clamp(1rem,2vw,1.2rem);color:var(--text-secondary);margin-bottom:.75rem;line-height:1.3; }
-    .modal-client { font-size:.9375rem;color:var(--text-secondary);margin-bottom:1.5rem; }
-    .modal-client strong { color:var(--text-primary); }
+    .modal-discipline { font-family:var(--font-mono);font-size:.6875rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.5rem; }
+    .modal-title { font-family:var(--font-serif);font-size:clamp(1.5rem,3vw,2.25rem);font-weight:700;color:var(--accent);letter-spacing:-0.02em;line-height:1.2;margin-bottom:.4rem; }
+    .modal-subtitle { display:none; }
+    .modal-client { font-family:var(--font-sans);font-size:.875rem;color:var(--text-secondary);margin-top:.25rem;margin-bottom:1.5rem; }
+    .modal-client strong { font-weight:600;color:var(--text-primary); }
     .modal-divider { position:relative;border:none;border-top:1px solid var(--border);margin:0 0 1.75rem; }
     .modal-divider-dot { position:absolute;top:-5px;left:50%;transform:translateX(-50%);width:8px;height:8px;background:var(--accent);border-radius:50%;display:block; }
     .modal-columns { display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:1.5rem; }
     @media(max-width:600px){.modal-columns{grid-template-columns:1fr;}}
-    .modal-col-label { font-family:var(--font-mono);font-size:.6875rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.5rem; }
-    .modal-col-text { font-size:.9375rem;color:var(--text-secondary);line-height:1.65; }
-    .modal-quote-block { background:var(--bg-elevated);border:1px solid var(--border);border-radius:8px;padding:1.5rem; }
-    .modal-quote-text { font-family:var(--font-serif);font-weight:500;font-size:1.0625rem;color:var(--text-primary);line-height:1.65;margin-bottom:.75rem; }
-    .modal-quote-source { font-family:var(--font-mono);font-size:.6875rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);margin-bottom:1rem; }
-    .modal-view-link { font-family:var(--font-mono);font-size:.75rem;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;transition:color var(--duration-fast); }
+    .modal-col-label { font-family:var(--font-mono);font-size:.6875rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:.625rem; }
+    .modal-col-text { font-family:var(--font-sans);font-size:.875rem;line-height:1.75;color:var(--text-secondary); }
+    .modal-quote-block { background:var(--accent-subtle);border:1px solid var(--border);border-radius:6px;padding:1.5rem; }
+    .modal-quote-text { font-family:var(--font-serif);font-weight:500;font-size:1rem;color:var(--text-primary);line-height:1.75;margin-bottom:.75rem; }
+    .modal-quote-source { font-family:var(--font-mono);font-size:.625rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);margin-bottom:1rem; }
+    .modal-view-link { font-family:var(--font-sans);font-size:.8125rem;font-weight:600;color:var(--accent);display:inline-block;margin-top:1rem;transition:color var(--duration-fast); }
     .modal-view-link:hover { color:var(--accent-hover); }
 
     /* ── FOOTER ── */
@@ -409,8 +409,8 @@
       <div class="modal-quote-block">
         <p class="modal-quote-text" id="modal-quote"></p>
         <p class="modal-quote-source" id="modal-quote-source"></p>
-        <a href="#" id="modal-link" class="modal-view-link">View case study →</a>
       </div>
+      <a href="#" id="modal-link" class="modal-view-link">View case study →</a>
     </div>
   </div>
 
@@ -476,8 +476,8 @@
       var d = CASES[slug];
       if (!d) return;
       document.getElementById('modal-discipline').textContent = d.discipline;
-      document.getElementById('modal-title').textContent = d.title;
-      document.getElementById('modal-subtitle').textContent = d.subtitle;
+      document.getElementById('modal-title').textContent = d.title + ': ' + d.subtitle;
+      document.getElementById('modal-subtitle').textContent = '';
       var cl = document.getElementById('modal-client');
       cl.innerHTML = '';
       var strong = document.createElement('strong'); strong.textContent = 'Client: '; cl.appendChild(strong);
