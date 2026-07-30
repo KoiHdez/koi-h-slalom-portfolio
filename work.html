@@ -80,113 +80,65 @@
 
     .work-section-inner { max-width: var(--max-content); margin-inline: auto; }
 
-    .work-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.25rem;
+    /* ── FILTER BAR ── */
+    .filter-bar { display: flex; flex-wrap: wrap; gap: 0.625rem; margin-bottom: 2.5rem; }
+    .filter-btn {
+      font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.04em; text-transform: uppercase;
+      padding: 0.45rem 0.9rem; border-radius: 9999px; border: 1px solid var(--border);
+      background: var(--bg-elevated); color: var(--text-secondary); cursor: pointer;
+      transition: background var(--duration-fast) ease, color var(--duration-fast) ease, border-color var(--duration-fast) ease;
     }
-    @media (min-width: 768px) { .work-grid { grid-template-columns: repeat(2, 1fr); } }
+    .filter-btn:hover { border-color: var(--text-secondary); color: var(--text-primary); }
+    .filter-btn.is-active { background: var(--text-primary); border-color: var(--text-primary); color: var(--bg-primary); }
+    .filter-empty { display: none; font-size: 0.9375rem; color: var(--text-secondary); padding: 3rem 0; text-align: center; }
+    .filter-empty.is-visible { display: block; }
 
-    /* ── CASE CARD ── */
-    .case-card {
-      display: flex; flex-direction: column; height: 100%;
-      background: var(--bg-elevated); border: 1px solid var(--border);
-      border-radius: 10px; padding: 1.25rem;
+    /* ── CASE STUDY LIST ── */
+    .case-slide-list { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .case-slide {
+      background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 8px;
+      padding: 2rem 1.5rem;
       transition: border-color var(--duration-fast) ease;
-      gap: 1rem;
     }
-    @media (min-width: 768px) {
-      .case-card {
-        padding: 1.5rem;
-        gap: 1.25rem;
-      }
+    @media (min-width: 768px) { .case-slide { padding: 2.5rem; } }
+    @media (min-width: 1024px) { .case-slide { padding: 3rem; } }
+    .case-slide:hover { border-color: var(--text-secondary); }
+    .case-slide[hidden] { display: none; }
+
+    .slide-inner { display: grid; grid-template-columns: 1fr; gap: 1.75rem; }
+    .slide-header { display: flex; flex-direction: column; gap: 0.5rem; }
+    .slide-discipline { font-family: var(--font-mono); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); }
+    .slide-title {
+      font-family: var(--font-serif); font-weight: 700; font-size: clamp(1.5rem, 3vw, 2.25rem);
+      letter-spacing: -0.02em; line-height: 1.2; color: var(--accent); margin-top: 0.25rem;
+      max-width: 52ch; text-wrap: balance;
     }
-    @media (min-width: 1024px) {
-      .case-card {
-        display: grid;
-        grid-template-columns: minmax(220px, 290px) minmax(0, 1fr);
-        align-items: start;
-        padding: 1.75rem;
-      }
+    .slide-client { font-family: var(--font-sans); font-size: 0.875rem; color: var(--text-secondary); margin-top: 0.25rem; }
+    .slide-client strong { font-weight: 600; color: var(--text-primary); }
+
+    .slide-quote {
+      background: var(--accent-subtle); border: 1px solid var(--border); border-radius: 6px;
+      padding: 1.5rem; display: flex; flex-direction: column; gap: 0.875rem; order: 2;
     }
+    .slide-quote-text { font-family: var(--font-serif); font-weight: 500; font-size: 1rem; line-height: 1.75; color: var(--text-primary); }
+    .slide-quote-source { font-family: var(--font-mono); font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); }
+
+    .slide-cs-link {
+      display: inline-flex; align-items: center; gap: 0.375rem;
+      font-family: var(--font-sans); font-size: 0.8125rem; font-weight: 600; color: var(--accent);
+      order: 3; transition: color var(--duration-fast) ease;
+    }
+    .slide-cs-link:hover { color: var(--accent-hover); }
     @media (prefers-reduced-motion: no-preference) {
-      .case-card { transition: border-color var(--duration-fast) ease, transform var(--duration-fast) ease; }
-      .case-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
-    }
-    .case-card:hover { border-color: var(--text-secondary); }
-
-    .card-thumbnail {
-      position: relative; aspect-ratio: 16 / 9; width: 100%;
-      background: var(--bg-subtle);
-      border: 1px solid var(--border); border-radius: 6px; overflow: hidden;
-      flex-shrink: 0;
-    }
-    @media (min-width: 1024px) {
-      .card-thumbnail { min-height: 100%; }
-    }
-    .card-thumb-inner { position: absolute; inset: 0.75rem; background: var(--bg-primary); border: 1px solid var(--border); border-radius: 3px; }
-    .card-thumb-line { position: absolute; left: 1.5rem; height: 6px; background: var(--border); border-radius: 9999px; }
-    .card-thumb-line-1 { right: 1.5rem; top: 1.5rem; }
-    .card-thumb-line-2 { right: 2.5rem; top: 2.5rem; }
-    .card-thumb-line-3 { right: 3.5rem; top: 3.5rem; }
-    .card-thumb-index { position: absolute; bottom: 0.75rem; right: 0.75rem; font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
-
-    .card-content {
-      display: flex; flex-direction: column;
-      gap: 0.9rem; flex: 1;
-      min-width: 0;
-    }
-    @media (min-width: 1024px) {
-      .card-content { gap: 1rem; padding-left: 0.25rem; }
+      .slide-cs-link .arrow { display: inline-block; transition: transform var(--duration-fast) ease; }
+      .slide-cs-link:hover .arrow { transform: translateX(3px); }
     }
 
-    .card-meta { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
-
-    .card-title { font-family: var(--font-serif); font-size: clamp(1.35rem, 2.4vw, 1.75rem); font-weight: 600; color: var(--text-primary); text-wrap: balance; }
-
-    .card-desc { font-family: var(--font-sans); font-size: 0.95rem; color: var(--text-secondary); line-height: 1.65; max-width: 44ch; }
-
-    .card-tags { display: flex; flex-wrap: wrap; gap: 0.375rem; margin-top: 0.25rem; }
-    .card-tag { font-family: var(--font-mono); font-size: 0.6875rem; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text-secondary); padding: 0.2rem 0.5rem; border-radius: 2px; }
-
-    .card-footer { margin-top: auto; display: flex; align-items: center; justify-content: space-between; padding-top: 1rem; border-top: 1px solid var(--border); }
-    .card-label { font-family: var(--font-mono); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); }
-    .card-arrow { display: inline-flex; align-items: center; justify-content: center; height: 2rem; width: 2rem; color: var(--text-secondary); }
-    .card-arrow svg { width: 1rem; height: 1rem; }
-    @media (prefers-reduced-motion: no-preference) {
-      .case-card:hover .card-arrow { color: var(--text-primary); }
-      .case-card:hover .card-arrow svg { transform: translate(2px, -2px); }
-      .card-arrow svg { transition: transform var(--duration-fast) ease; }
-    }
-
-    /* P1 badge */
-    .card-p1-note { font-family: var(--font-mono); font-size: 0.6875rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem; }
-
-    /* ── CASE BRIEF MODAL ── */
-    .modal-backdrop { position:fixed;inset:0;z-index:200;background:rgba(17,17,17,.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:1.5rem;animation:modal-fade-in 160ms ease both; }
-    .modal-backdrop[hidden] { display:none; }
-    @keyframes modal-fade-in { from{opacity:0} to{opacity:1} }
-    .modal { position:relative;background:var(--bg-primary);border:1px solid var(--border);border-radius:12px;padding:2rem 2.25rem 2.25rem;max-width:900px;width:100%;max-height:90vh;overflow-y:auto;animation:modal-slide-in 200ms cubic-bezier(.22,1,.36,1) both; }
-    @media(max-width:767px){.modal{padding:1.5rem;}}
-    @keyframes modal-slide-in { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
-    .modal-close { position:absolute;top:1rem;right:1rem;background:none;border:none;cursor:pointer;color:var(--text-muted);padding:.25rem;border-radius:4px;line-height:0;transition:color var(--duration-fast); }
-    .modal-close:hover { color:var(--text-primary); }
-    .modal-discipline { font-family:var(--font-mono);font-size:.6875rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.5rem; }
-    .modal-title { font-family:var(--font-serif);font-size:clamp(1.5rem,3vw,2.25rem);font-weight:700;color:var(--accent);letter-spacing:-0.02em;line-height:1.2;margin-bottom:.4rem; }
-    .modal-subtitle { display:none; }
-    .modal-client { font-family:var(--font-sans);font-size:.875rem;color:var(--text-secondary);margin-top:.25rem;margin-bottom:1.5rem; }
-    .modal-client strong { font-weight:600;color:var(--text-primary); }
-    .modal-divider { position:relative;border:none;border-top:1px solid var(--border);margin:0 0 1.75rem; }
-    .modal-divider-dot { position:absolute;top:-5px;left:50%;transform:translateX(-50%);width:8px;height:8px;background:var(--accent);border-radius:50%;display:block; }
-    .modal-columns { display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:1.5rem; }
-    @media(max-width:600px){.modal-columns{grid-template-columns:1fr;}}
-    .modal-col-label { font-family:var(--font-mono);font-size:.6875rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:.625rem; }
-    .modal-col-text { font-family:var(--font-sans);font-size:.875rem;line-height:1.75;color:var(--text-secondary); }
-    .modal-quote-block { background:var(--accent-subtle);border:1px solid var(--border);border-radius:6px;padding:1.5rem; }
-    .modal-quote-text { font-family:var(--font-serif);font-weight:500;font-size:1rem;color:var(--text-primary);line-height:1.75;margin-bottom:.75rem; }
-    .modal-quote-source { font-family:var(--font-mono);font-size:.625rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);margin-bottom:1rem; }
-    .modal-view-link { font-family:var(--font-sans);font-size:.8125rem;font-weight:600;color:var(--accent);display:inline-block;margin-top:1rem;transition:color var(--duration-fast); }
-    .modal-view-link:hover { color:var(--accent-hover); }
+    .slide-columns { display: grid; grid-template-columns: 1fr; gap: 1.25rem; padding-top: 1.75rem; border-top: 1px solid var(--border); }
+    @media (min-width: 640px) { .slide-columns { grid-template-columns: repeat(3, 1fr); gap: 2rem; } }
+    .slide-col-label { font-family: var(--font-mono); font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 0.625rem; }
+    .slide-col-text { font-family: var(--font-sans); font-size: 0.875rem; line-height: 1.75; color: var(--text-secondary); }
 
     /* ── FOOTER ── */
     .site-footer { border-top: 1px solid var(--border); padding-inline: var(--px-mobile); padding-block: 3rem; }
@@ -224,158 +176,164 @@
 
     <section class="work-section" aria-label="All case studies">
       <div class="work-section-inner">
-        <ul class="work-grid">
+        <div class="filter-bar" role="group" aria-label="Filter case studies by discipline">
+          <button type="button" class="filter-btn is-active" data-filter="all" aria-pressed="true">All</button>
+          <button type="button" class="filter-btn" data-filter="agentic-design" aria-pressed="false">Agentic Design</button>
+          <button type="button" class="filter-btn" data-filter="product-design" aria-pressed="false">Product Design</button>
+          <button type="button" class="filter-btn" data-filter="ux-design" aria-pressed="false">UX Design</button>
+          <button type="button" class="filter-btn" data-filter="ui-design" aria-pressed="false">UI Design</button>
+        </div>
 
-          <li>
-            <a href="banking-on-design.html" class="case-card" data-modal="banking-on-design">
-              <div class="card-thumbnail" aria-hidden="true">
-                <div class="card-thumb-inner"></div>
-                <div class="card-thumb-line card-thumb-line-1"></div>
-                <div class="card-thumb-line card-thumb-line-2"></div>
-                <div class="card-thumb-line card-thumb-line-3"></div>
-                <span class="card-thumb-index">01</span>
-              </div>
-              <div class="card-content">
-                <p class="card-meta">Design Systems · Financial Services</p>
-                <h2 class="card-title">Banking on Design</h2>
-                <p class="card-desc">A holistic design system that unified multiple design pods for a global investment bank — and left a governance framework the client could run independently.</p>
-                <div class="card-tags">
-                  <span class="card-tag">Design Systems</span>
-                  <span class="card-tag">UI Design</span>
-                </div>
-                <div class="card-footer">
-                  <span class="card-label">Case study</span>
-                  <span class="card-arrow" aria-hidden="true">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
-                    </svg>
-                  </span>
-                </div>
-              </div>
-            </a>
-          </li>
+        <div class="case-slide-list" id="case-slide-list">
 
-          <li>
-            <a href="life-sciences-marketplace.html" class="case-card" data-modal="life-sciences-marketplace">
-              <div class="card-thumbnail" aria-hidden="true">
-                <div class="card-thumb-inner"></div>
-                <div class="card-thumb-line card-thumb-line-1"></div>
-                <div class="card-thumb-line card-thumb-line-2"></div>
-                <div class="card-thumb-line card-thumb-line-3"></div>
-                <span class="card-thumb-index">02</span>
-              </div>
-              <div class="card-content">
-                <p class="card-meta">Product · UX · Life Sciences</p>
-                <h2 class="card-title">Life Sciences Marketplace</h2>
-                <p class="card-desc">A marketplace built from zero that serves 7,000+ independent pharmacies and closes a $1.5B revenue gap.</p>
-                <div class="card-tags">
-                  <span class="card-tag">Product Design</span>
-                  <span class="card-tag">UX</span>
-                  <span class="card-tag">eCommerce</span>
+          <article class="case-slide" data-tags="ui-design">
+            <div class="slide-inner">
+              <header class="slide-header">
+                <p class="slide-discipline">Design Systems · UI Design</p>
+                <h2 class="slide-title">Banking on Design: Powering Efficiency Through Comprehensive Design Systems</h2>
+                <p class="slide-client"><strong>Client:</strong> A global investment bank and financial services company</p>
+              </header>
+              <aside class="slide-quote">
+                <p class="slide-quote-text">"I learned a lot from working with Koi. Though he was the XD lead, my voice was heard as an equal. Koi acted as a mentor — teaching the ins and outs of Figma, design systems, and sprint planning. He deserves recognition for not only exceeding expectations, but also for making time for other team members."</p>
+                <p class="slide-quote-source">Colleague Designer — Financial Services engagement</p>
+              </aside>
+              <a href="banking-on-design.html" class="slide-cs-link">View case study <span class="arrow" aria-hidden="true">→</span></a>
+              <div class="slide-columns">
+                <div class="slide-col">
+                  <p class="slide-col-label">Why</p>
+                  <p class="slide-col-text">The client needed to re-envision and simplify their call center agent experience across multiple product lines, agent workflows, and data platforms — creating a unified "North Star" platform for operational efficiency.</p>
                 </div>
-                <div class="card-footer">
-                  <span class="card-label">Case study</span>
-                  <span class="card-arrow" aria-hidden="true">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
-                    </svg>
-                  </span>
+                <div class="slide-col">
+                  <p class="slide-col-label">What</p>
+                  <p class="slide-col-text">As Lead Designer for the Design Systems Pod, I built a cohesive design system ensuring consistency across multiple pods. I acted as design system SME, coordinated with development teams, and facilitated cross-program collaboration.</p>
+                </div>
+                <div class="slide-col">
+                  <p class="slide-col-label">Wow</p>
+                  <p class="slide-col-text">Delivered a holistic, mature design system complete with content and governance guidelines — giving the client full independence after our engagement ended. Strengthened cross-business-unit collaboration and enabled a cohesive digital experience.</p>
                 </div>
               </div>
-            </a>
-          </li>
+            </div>
+          </article>
 
-          <li>
-            <a href="redefining-knowledge-management.html" class="case-card" data-modal="redefining-knowledge-management">
-              <div class="card-thumbnail" aria-hidden="true">
-                <div class="card-thumb-inner"></div>
-                <div class="card-thumb-line card-thumb-line-1"></div>
-                <div class="card-thumb-line card-thumb-line-2"></div>
-                <div class="card-thumb-line card-thumb-line-3"></div>
-                <span class="card-thumb-index">03</span>
-              </div>
-              <div class="card-content">
-                <p class="card-meta">UX · Research · Technology</p>
-                <h2 class="card-title">Redefining Knowledge Management</h2>
-                <p class="card-desc">An internal knowledge hub for a Big Tech client — satisfaction ratings moved from 2 to 4.3 out of 5.</p>
-                <div class="card-tags">
-                  <span class="card-tag">UX Design</span>
-                  <span class="card-tag">Research</span>
-                  <span class="card-tag">HCD</span>
+          <article class="case-slide" data-tags="product-design ux-design">
+            <div class="slide-inner">
+              <header class="slide-header">
+                <p class="slide-discipline">UX/UI Design · Product</p>
+                <h2 class="slide-title">Life Sciences Marketplace: Revolutionizing Retail Pharmacies with Intuitive Customer Journeys</h2>
+                <p class="slide-client"><strong>Client:</strong> A leading global pharmaceutical solutions organization</p>
+              </header>
+              <aside class="slide-quote">
+                <p class="slide-quote-text">"Koi Hernandez has been so great to work with on the Marketplace project. He is thoughtful in his designs, asks the right questions, delivers great designs in an organized and thorough manner. He is forward thinking and has brought so much value to the design of this project."</p>
+                <p class="slide-quote-source">Client Stakeholder — Life Sciences Marketplace</p>
+              </aside>
+              <a href="life-sciences-marketplace.html" class="slide-cs-link">View case study <span class="arrow" aria-hidden="true">→</span></a>
+              <div class="slide-columns">
+                <div class="slide-col">
+                  <p class="slide-col-label">Why</p>
+                  <p class="slide-col-text">The client identified a $1.5 billion missed opportunity — customers were buying front-of-house products from competitors after purchasing prescriptions through their platform. A Marketplace was needed to recapture that revenue within their own ecosystem.</p>
                 </div>
-                <div class="card-footer">
-                  <span class="card-label">Case study</span>
-                  <span class="card-arrow" aria-hidden="true">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
-                    </svg>
-                  </span>
+                <div class="slide-col">
+                  <p class="slide-col-label">What</p>
+                  <p class="slide-col-text">Spearheaded the design of the core Marketplace experience — browsing, cart management, account and order management. Led user interviews to validate early designs and worked closely with developers and Product Owners to refine requirements.</p>
+                </div>
+                <div class="slide-col">
+                  <p class="slide-col-label">Wow</p>
+                  <p class="slide-col-text">The MVP launched to positive feedback, with customers highlighting ease of use. The Marketplace streamlined purchasing and laid the foundation for future initiatives — while also elevating the team's Design QA process and delivery efficiency.</p>
                 </div>
               </div>
-            </a>
-          </li>
+            </div>
+          </article>
 
-          <li>
-            <a href="life-science-retailer-ecommerce.html" class="case-card" data-modal="life-science-retailer-ecommerce">
-              <div class="card-thumbnail" aria-hidden="true">
-                <div class="card-thumb-inner"></div>
-                <div class="card-thumb-line card-thumb-line-1"></div>
-                <div class="card-thumb-line card-thumb-line-2"></div>
-                <div class="card-thumb-line card-thumb-line-3"></div>
-                <span class="card-thumb-index">04</span>
-              </div>
-              <div class="card-content">
-                <p class="card-meta">UX · UI · Design Systems · 6 weeks</p>
-                <h2 class="card-title">Life Science Retailer E-commerce</h2>
-                <p class="card-desc">Redesigning a global life sciences retailer's checkout and account experience in six weeks — designs that are still holding up years later.</p>
-                <div class="card-tags">
-                  <span class="card-tag">UX Design</span>
-                  <span class="card-tag">UI Design</span>
-                  <span class="card-tag">Design Systems</span>
+          <article class="case-slide" data-tags="ux-design">
+            <div class="slide-inner">
+              <header class="slide-header">
+                <p class="slide-discipline">UX Design · Human-Centered Design</p>
+                <h2 class="slide-title">Redefining Knowledge Management: Elevating Tech With UX Innovation &amp; Efficiency</h2>
+                <p class="slide-client"><strong>Client:</strong> A leading global technology company specializing in online advertising, cloud computing, and artificial intelligence</p>
+              </header>
+              <aside class="slide-quote">
+                <p class="slide-quote-text">"Koi has a calm demeanor which proved to be useful when dealing with stakeholders who constantly change their minds. Despite unclear feedback and constant design changes, Koi always remained level headed and provided the best design recommendations he could at any given moment."</p>
+                <p class="slide-quote-source">Colleague Designer — Big Tech engagement</p>
+              </aside>
+              <a href="redefining-knowledge-management.html" class="slide-cs-link">View case study <span class="arrow" aria-hidden="true">→</span></a>
+              <div class="slide-columns">
+                <div class="slide-col">
+                  <p class="slide-col-label">Why</p>
+                  <p class="slide-col-text">The client's technical consultant group lacked a central repository for solutions, leading to outdated content, effort duplication, and poor discoverability. A unified platform with a single source of truth was critical.</p>
                 </div>
-                <div class="card-footer">
-                  <span class="card-label">Case study</span>
-                  <span class="card-arrow" aria-hidden="true">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
-                    </svg>
-                  </span>
+                <div class="slide-col">
+                  <p class="slide-col-label">What</p>
+                  <p class="slide-col-text">Collaborated with UX and visual designers to create a unified solutions hub with an underlying CMS. Developed wireframes and high-fidelity mockups, conducted usability tests across regions and organizational levels, and aligned stakeholders on goals.</p>
+                </div>
+                <div class="slide-col">
+                  <p class="slide-col-label">Wow</p>
+                  <p class="slide-col-text">Site ratings improved from 2 to 4.3 out of 5 stars. Reduced repetitive tasks, increased transparency, and elevated the team's brand identity. The redesign established a new visual standard and blueprint for future product development.</p>
                 </div>
               </div>
-            </a>
-          </li>
+            </div>
+          </article>
 
-          <li>
-            <a href="elevating-design-efficiency.html" class="case-card" data-modal="elevating-design-efficiency">
-              <div class="card-thumbnail" aria-hidden="true">
-                <div class="card-thumb-inner"></div>
-                <div class="card-thumb-line card-thumb-line-1"></div>
-                <div class="card-thumb-line card-thumb-line-2"></div>
-                <div class="card-thumb-line card-thumb-line-3"></div>
-                <span class="card-thumb-index">05</span>
-              </div>
-              <div class="card-content">
-                <p class="card-meta">Design Systems · Financial Services</p>
-                <h2 class="card-title">Elevating Design Efficiency</h2>
-                <p class="card-desc">A unified Figma component ecosystem that cut time-to-design in half for a leading financial services institution.</p>
-                <div class="card-tags">
-                  <span class="card-tag">Design Systems</span>
-                  <span class="card-tag">UI Design</span>
-                  <span class="card-tag">Product Design</span>
+          <article class="case-slide" data-tags="ux-design ui-design">
+            <div class="slide-inner">
+              <header class="slide-header">
+                <p class="slide-discipline">UX/UI Design</p>
+                <h2 class="slide-title">Life Science Retailer E-commerce: Streamlining Life Sciences Shopping With Intuitive Design</h2>
+                <p class="slide-client"><strong>Client:</strong> A company developing and selling products for biomedical testing and life sciences research</p>
+              </header>
+              <aside class="slide-quote">
+                <p class="slide-quote-text">"Koi has done an outstanding job organizing the design discovery sessions with the client. He had to start from a blank slate and extract design requirements. Even after several weeks of further technical discoveries, the designs Koi provided are holding solid."</p>
+                <p class="slide-quote-source">Engagement Lead — Life Sciences Retail</p>
+              </aside>
+              <a href="life-science-retailer-ecommerce.html" class="slide-cs-link">View case study <span class="arrow" aria-hidden="true">→</span></a>
+              <div class="slide-columns">
+                <div class="slide-col">
+                  <p class="slide-col-label">Why</p>
+                  <p class="slide-col-text">Since launching their Storefront in 2018, the client's shopping experience had grown outdated. Customers cited complex specialized ordering, difficulty managing accounts, tracking orders, and scheduling deliveries.</p>
                 </div>
-                <div class="card-footer">
-                  <span class="card-label">Case study</span>
-                  <span class="card-arrow" aria-hidden="true">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
-                    </svg>
-                  </span>
+                <div class="slide-col">
+                  <p class="slide-col-label">What</p>
+                  <p class="slide-col-text">As Design Lead, organized discovery workshops and drove weekly deliverables. Identified business needs, developed wireframes and high-fidelity designs, produced prototypes, and led usability interviews — all within a compressed six-week timeline.</p>
+                </div>
+                <div class="slide-col">
+                  <p class="slide-col-label">Wow</p>
+                  <p class="slide-col-text">Delivered beyond the initial scope of 18 screens in six weeks — and created a foundational design system for future teams. The designs are still in production today, proving their lasting value and effectiveness.</p>
                 </div>
               </div>
-            </a>
-          </li>
+            </div>
+          </article>
 
-        </ul>
+          <article class="case-slide" data-tags="agentic-design product-design ui-design">
+            <div class="slide-inner">
+              <header class="slide-header">
+                <p class="slide-discipline">UX/UI Design · Product Design</p>
+                <h2 class="slide-title">Elevating Design Efficiency: Building a Unified Component Ecosystem</h2>
+                <p class="slide-client"><strong>Client:</strong> A leading U.S.-based financial services institution</p>
+              </header>
+              <aside class="slide-quote">
+                <p class="slide-quote-text">"I'm using Form Builder and it's amazing! It's saving me so much time to create a flow that I can't even describe how happy I am that this is built. I love it!"</p>
+                <p class="slide-quote-source">Designer — Financial Services engagement</p>
+              </aside>
+              <a href="elevating-design-efficiency.html" class="slide-cs-link">View case study <span class="arrow" aria-hidden="true">→</span></a>
+              <div class="slide-columns">
+                <div class="slide-col">
+                  <p class="slide-col-label">Why</p>
+                  <p class="slide-col-text">Designers across multiple teams lacked a centralized, reliable resource for building new experiences — causing inefficiencies and inconsistencies. The client needed a scalable design system as both a creative launchpad and a single source of truth.</p>
+                </div>
+                <div class="slide-col">
+                  <p class="slide-col-label">What</p>
+                  <p class="slide-col-text">Led the creation of a global Figma library shared across three teams, consolidating components, patterns, and templates. Introduced Figma variables for content switching and branching for version control — enabling rapid prototyping at scale.</p>
+                </div>
+                <div class="slide-col">
+                  <p class="slide-col-label">Wow</p>
+                  <p class="slide-col-text">Cut time-to-design in half through innovative components like Form Builder. The system became a trusted reference for designers, developers, and PMs. Delivered a multi-library architecture of five interconnected libraries serving distinct purposes.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <p class="filter-empty" id="filter-empty">No case studies match this filter yet.</p>
       </div>
     </section>
 
@@ -388,124 +346,33 @@
     </div>
   </footer>
 
-  <!-- CASE BRIEF MODAL -->
-  <div id="case-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
-    <div class="modal">
-      <button class="modal-close" id="modal-close" aria-label="Close modal">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
-      <div class="modal-header">
-        <p class="modal-discipline" id="modal-discipline"></p>
-        <h2 class="modal-title" id="modal-title"></h2>
-        <p class="modal-subtitle" id="modal-subtitle"></p>
-        <p class="modal-client" id="modal-client"></p>
-      </div>
-      <hr class="modal-divider" aria-hidden="true"><span class="modal-divider-dot" aria-hidden="true"></span>
-      <div class="modal-columns">
-        <div class="modal-col"><p class="modal-col-label">Why</p><p class="modal-col-text" id="modal-why"></p></div>
-        <div class="modal-col"><p class="modal-col-label">What</p><p class="modal-col-text" id="modal-what"></p></div>
-        <div class="modal-col"><p class="modal-col-label">Wow</p><p class="modal-col-text" id="modal-wow"></p></div>
-      </div>
-      <div class="modal-quote-block">
-        <p class="modal-quote-text" id="modal-quote"></p>
-        <p class="modal-quote-source" id="modal-quote-source"></p>
-      </div>
-      <a href="#" id="modal-link" class="modal-view-link">View case study →</a>
-    </div>
-  </div>
-
   <script>
-    var CASES = {
-      'banking-on-design':{
-        discipline:'Design Systems · UI Design',title:'Banking on Design',
-        subtitle:'Powering Efficiency Through Comprehensive Design Systems',
-        client:'A global investment bank and financial services company',
-        why:'The client needed to re-envision and simplify their call center agent experience across multiple product lines, agent workflows, and data platforms — creating a unified “North Star” platform for operational efficiency.',
-        what:'As Lead Designer for the Design Systems Pod, I built a cohesive design system ensuring consistency across multiple pods. I acted as design system SME, coordinated with development teams, and facilitated cross-program collaboration.',
-        wow:'Delivered a holistic, mature design system complete with content and governance guidelines — giving the client full independence after our engagement ended. Strengthened cross-business-unit collaboration and enabled a cohesive digital experience.',
-        quote:'“I learned a lot from working with Koi. Though he was the XD lead, my voice was heard as an equal. Koi acted as a mentor — teaching the ins and outs of Figma, design systems, and sprint planning. He deserves recognition for not only exceeding expectations, but also for making time for other team members.”',
-        quoteSource:'Colleague Designer — Financial Services engagement',
-        href:'banking-on-design.html'},
-      'life-sciences-marketplace':{
-        discipline:'UX/UI Design · Product',title:'Life Sciences Marketplace',
-        subtitle:'Revolutionizing Retail Pharmacies with Intuitive Customer Journeys',
-        client:'A leading global pharmaceutical solutions organization',
-        why:'The client identified a $1.5 billion missed opportunity — customers were buying front-of-house products from competitors. A Marketplace was needed to recapture that revenue within their own ecosystem.',
-        what:'Spearheaded the design of the core Marketplace experience — browsing, cart management, account and order management. Led user interviews, worked closely with developers and Product Owners to refine requirements.',
-        wow:'The MVP launched to positive feedback, with customers highlighting ease of use. The Marketplace streamlined purchasing and laid the foundation for future initiatives — while elevating the team’s Design QA process.',
-        quote:'“Koi Hernandez has been so great to work with on the Marketplace project. He is thoughtful in his designs, asks the right questions, delivers great designs in an organized and thorough manner. He is forward thinking and has brought so much value to the design of this project.”',
-        quoteSource:'Client Stakeholder — Life Sciences Marketplace',
-        href:'life-sciences-marketplace.html'},
-      'redefining-knowledge-management':{
-        discipline:'UX Design · Human-Centered Design',title:'Redefining Knowledge Management',
-        subtitle:'Elevating Tech With UX Innovation & Efficiency',
-        client:'A leading global technology company specializing in online advertising, cloud computing, and artificial intelligence',
-        why:'The client’s technical consultant group lacked a central repository for solutions, leading to outdated content, effort duplication, and poor discoverability. A unified platform with a single source of truth was critical.',
-        what:'Collaborated with UX and visual designers to create a unified solutions hub with an underlying CMS. Developed wireframes and hi-fi mockups, conducted usability tests across regions, and aligned stakeholders on goals.',
-        wow:'Site ratings improved from 2 to 4.3 out of 5 stars. Reduced repetitive tasks, increased transparency, and elevated the team’s brand identity. Established a new visual standard and blueprint for future product development.',
-        quote:'“Koi has a calm demeanor which proved to be useful when dealing with stakeholders who constantly change their minds. Despite unclear feedback and constant design changes, Koi always remained level headed and provided the best design recommendations he could at any given moment.”',
-        quoteSource:'Colleague Designer — Big Tech engagement',
-        href:'redefining-knowledge-management.html'},
-      'life-science-retailer-ecommerce':{
-        discipline:'UX/UI Design',title:'Life Science Retailer E-commerce',
-        subtitle:'Streamlining Life Sciences Shopping With Intuitive Design',
-        client:'A company developing and selling products for biomedical testing and life sciences research',
-        why:'Since launching their Storefront in 2018, the client’s shopping experience had grown outdated. Customers cited complex specialized ordering, difficulty managing accounts, tracking orders, and scheduling deliveries.',
-        what:'As Design Lead, organized discovery workshops and drove weekly deliverables. Developed wireframes and high-fidelity designs, produced prototypes, and led usability interviews — all within a compressed six-week timeline.',
-        wow:'Delivered beyond the initial scope of 18 screens in six weeks — and created a foundational design system for future teams. The designs are still in production today, proving their lasting value and effectiveness.',
-        quote:'“Koi has done an outstanding job organizing the design discovery sessions with the client. He had to start from a blank slate and extract design requirements. Even after several weeks of further technical discoveries, the designs Koi provided are holding solid.”',
-        quoteSource:'Engagement Lead — Life Sciences Retail',
-        href:'life-science-retailer-ecommerce.html'},
-      'elevating-design-efficiency':{
-        discipline:'UX/UI Design · Product Design',title:'Elevating Design Efficiency',
-        subtitle:'Building a Unified Component Ecosystem',
-        client:'A leading U.S.-based financial services institution',
-        why:'Designers across multiple teams lacked a centralized, reliable resource for building new experiences — causing inefficiencies and inconsistencies. The client needed a scalable design system as both a creative launchpad and a single source of truth.',
-        what:'Led the creation of a global Figma library shared across three teams, consolidating components, patterns, and templates. Introduced Figma variables for content switching and branching for version control — enabling rapid prototyping at scale.',
-        wow:'Cut time-to-design in half through innovative components like Form Builder. The system became a trusted reference for designers, developers, and PMs. Delivered a multi-library architecture of five interconnected libraries.',
-        quote:'“I’m using Form Builder and it’s amazing! It’s saving me so much time to create a flow that I can’t even describe how happy I am that this is built. I love it!”',
-        quoteSource:'Designer — Financial Services engagement',
-        href:'elevating-design-efficiency.html'}
-    };
+    (function () {
+      var filterBtns = Array.from(document.querySelectorAll('.filter-btn'));
+      var slides = Array.from(document.querySelectorAll('.case-slide'));
+      var emptyState = document.getElementById('filter-empty');
 
-    var backdrop = document.getElementById('case-modal');
-    var closeBtn = document.getElementById('modal-close');
-    var lastFocused = null;
+      filterBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          filterBtns.forEach(function (b) {
+            b.classList.remove('is-active');
+            b.setAttribute('aria-pressed', 'false');
+          });
+          btn.classList.add('is-active');
+          btn.setAttribute('aria-pressed', 'true');
 
-    function openModal(slug) {
-      var d = CASES[slug];
-      if (!d) return;
-      document.getElementById('modal-discipline').textContent = d.discipline;
-      document.getElementById('modal-title').textContent = d.title + ': ' + d.subtitle;
-      document.getElementById('modal-subtitle').textContent = '';
-      var cl = document.getElementById('modal-client');
-      cl.innerHTML = '';
-      var strong = document.createElement('strong'); strong.textContent = 'Client: '; cl.appendChild(strong);
-      cl.appendChild(document.createTextNode(d.client));
-      document.getElementById('modal-why').textContent = d.why;
-      document.getElementById('modal-what').textContent = d.what;
-      document.getElementById('modal-wow').textContent = d.wow;
-      document.getElementById('modal-quote').textContent = d.quote;
-      document.getElementById('modal-quote-source').textContent = d.quoteSource;
-      document.getElementById('modal-link').href = d.href;
-      backdrop.hidden = false;
-      document.body.style.overflow = 'hidden';
-      closeBtn.focus();
-    }
-
-    function closeModal() {
-      backdrop.hidden = true;
-      document.body.style.overflow = '';
-      if (lastFocused) lastFocused.focus();
-    }
-
-    document.addEventListener('click', function(e) {
-      var card = e.target.closest('[data-modal]');
-      if (card) { e.preventDefault(); lastFocused = card; openModal(card.dataset.modal); return; }
-      if (e.target === backdrop) closeModal();
-    });
-    closeBtn.addEventListener('click', closeModal);
-    document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && !backdrop.hidden) closeModal(); });
+          var filter = btn.dataset.filter;
+          var visibleCount = 0;
+          slides.forEach(function (slide) {
+            var tags = (slide.dataset.tags || '').split(' ');
+            var show = filter === 'all' || tags.indexOf(filter) !== -1;
+            slide.hidden = !show;
+            if (show) visibleCount++;
+          });
+          if (emptyState) emptyState.classList.toggle('is-visible', visibleCount === 0);
+        });
+      });
+    })();
   </script>
 
 </body>
