@@ -795,7 +795,7 @@
     }
 
     .skills-inner { max-width: var(--max-content); margin-inline: auto; }
-    .capabilities-heading { max-width: 22ch; margin-bottom: 1rem; }
+    .capabilities-heading { max-width: 30ch; margin-bottom: 1rem; text-wrap: balance; }
     .capabilities-intro { max-width: 62ch; font-size: 1rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 3rem; }
     .capabilities-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; }
     @media (min-width: 640px) { .capabilities-grid { grid-template-columns: repeat(2, 1fr); gap: 3rem 2.5rem; } }
@@ -887,7 +887,7 @@
           <h1 id="hero-name" class="hero-name">Koi Hernandez</h1>
 
           <p class="hero-tagline">
-            I design the systems behind the outcomes — so teams move faster, think bigger, and ship work that sticks.
+            I design the systems behind the outcomes, so teams move faster, think bigger, and ship work that sticks.
           </p>
 
           <div class="hero-actions">
@@ -942,14 +942,14 @@
     <section aria-labelledby="skills-heading" class="skills-section">
       <div class="skills-inner">
         <p class="section-kicker">Capabilities</p>
-        <h2 id="skills-heading" class="section-heading capabilities-heading">From ambiguity to scalable products that ship.</h2>
-        <p class="capabilities-intro">I work across the full arc of an engagement, from identifying the right problem to designing the experience and building the systems that help it scale. Each capability is grounded in measurable outcomes from real client work.</p>
+        <h2 id="skills-heading" class="section-heading capabilities-heading">Turning complex problems into clear, usable experiences.</h2>
+        <p class="capabilities-intro">I combine research, design, prototyping, and emerging tools to explore ideas, refine solutions, and create experiences that deliver meaningful outcomes.</p>
         <div class="capabilities-grid">
           <article class="capability-pillar">
             <p class="capability-index">01</p>
             <h3 class="capability-title">Agentic Design</h3>
-            <p class="capability-disciplines">AI Workflows · Agent Design · Automation</p>
-            <p class="capability-description">Applying AI throughout the design process to produce prototypes faster, explore a broader range of solutions, and move promising ideas toward validation with greater speed.</p>
+            <p class="capability-disciplines">AI-Assisted Design · Rapid Prototyping · Exploration</p>
+            <p class="capability-description">Using AI to accelerate prototyping, broaden design exploration, and refine concepts through faster, more focused cycles of iteration.</p>
             <div class="capability-proof-wrap"><span class="capability-proof-label">Selected outcome</span><a class="capability-proof" href="elevating-design-efficiency.html" data-modal="elevating-design-efficiency"><strong>50%</strong> faster design <span class="arrow" aria-hidden="true">→</span></a></div>
           </article>
           <article class="capability-pillar">
@@ -986,7 +986,7 @@
           <div>
             <p class="section-kicker">Featured · 2022 — 2024</p>
             <h2 id="featured-heading" class="section-heading">Selected case studies</h2>
-            <p class="section-desc">Work spanning financial services, life sciences, healthcare, and technology — each engagement shaped by a human-centered approach and a bias toward craft.</p>
+            <p class="section-desc">A closer look at how I apply these capabilities to navigate ambiguity, align teams, and deliver measurable results.</p>
           </div>
           <a href="work.html" class="all-work-link">
             All work
@@ -1003,7 +1003,7 @@
                 <div class="slide-inner">
                   <header class="slide-header">
                     <p class="slide-discipline">Design Systems · UI Design</p>
-                    <h3 class="slide-title">Banking on Design: Powering Efficiency Through Comprehensive Design Systems</h3>
+                    <h3 class="slide-title">Banking on Design: Unifying Design Systems Across Teams</h3>
                     <p class="slide-client"><strong>Client:</strong> A global investment bank and financial services company</p>
                   </header>
                   <aside class="slide-quote">
@@ -1033,7 +1033,7 @@
                 <div class="slide-inner">
                   <header class="slide-header">
                     <p class="slide-discipline">UX/UI Design · Product</p>
-                    <h3 class="slide-title">Life Sciences Marketplace: Revolutionizing Retail Pharmacies with Intuitive Customer Journeys</h3>
+                    <h3 class="slide-title">Life Sciences Marketplace: Redesigning the Retail Pharmacy Experience</h3>
                     <p class="slide-client"><strong>Client:</strong> A leading global pharmaceutical solutions organization</p>
                   </header>
                   <aside class="slide-quote">
@@ -1063,7 +1063,7 @@
                 <div class="slide-inner">
                   <header class="slide-header">
                     <p class="slide-discipline">UX/UI Design · Product Design</p>
-                    <h3 class="slide-title">Elevating Design Efficiency: Building a Unified Component Ecosystem</h3>
+                    <h3 class="slide-title">Elevating Design Efficiency: Building a Shared Component Library</h3>
                     <p class="slide-client"><strong>Client:</strong> A leading U.S.-based financial services institution</p>
                   </header>
                   <aside class="slide-quote">
@@ -1093,7 +1093,7 @@
                 <div class="slide-inner">
                   <header class="slide-header">
                     <p class="slide-discipline">UX/UI Design</p>
-                    <h3 class="slide-title">Life Science Retailer E-commerce: Streamlining Life Sciences Shopping With Intuitive Design</h3>
+                    <h3 class="slide-title">Life Science Retailer E-commerce: Redesigning the Life Sciences Shopping Experience</h3>
                     <p class="slide-client"><strong>Client:</strong> A company developing and selling products for biomedical testing and life sciences research</p>
                   </header>
                   <aside class="slide-quote">
@@ -1123,7 +1123,7 @@
                 <div class="slide-inner">
                   <header class="slide-header">
                     <p class="slide-discipline">UX Design · Human-Centered Design</p>
-                    <h3 class="slide-title">Redefining Knowledge Management: Elevating Tech With UX Innovation &amp; Efficiency</h3>
+                    <h3 class="slide-title">Redefining Knowledge Management: Building a Unified Knowledge Hub</h3>
                     <p class="slide-client"><strong>Client:</strong> A leading global technology company specializing in online advertising, cloud computing, and artificial intelligence</p>
                   </header>
                   <aside class="slide-quote">
@@ -1363,11 +1363,11 @@
   <script id="modal-script">
     (function(){
       var CASES={
-        'banking-on-design':{discipline:'Design Systems · UI Design',title:'Banking on Design',subtitle:'Powering Efficiency Through Comprehensive Design Systems',client:'A global investment bank and financial services company',why:'The client needed to re-envision and simplify their call center agent experience across multiple product lines, agent workflows, and data platforms — creating a unified "North Star" platform for operational efficiency.',what:'As Lead Designer for the Design Systems Pod, I built a cohesive design system ensuring consistency across multiple pods. I acted as design system SME, coordinated with development teams, and facilitated cross-program collaboration.',wow:'Delivered a holistic, mature design system complete with content and governance guidelines — giving the client full independence after our engagement ended. Strengthened cross-business-unit collaboration and enabled a cohesive digital experience.',quote:'\u201cI learned a lot from working with Koi. Though he was the XD lead, my voice was heard as an equal. Koi acted as a mentor — teaching the ins and outs of Figma, design systems, and sprint planning. He deserves recognition for not only exceeding expectations, but also for making time for other team members.\u201d',quoteSource:'Colleague Designer — Financial Services engagement',href:'banking-on-design.html'},
-        'life-sciences-marketplace':{discipline:'UX/UI Design · Product',title:'Life Sciences Marketplace',subtitle:'Revolutionizing Retail Pharmacies with Intuitive Customer Journeys',client:'A leading global pharmaceutical solutions organization',why:'The client identified a $1.5 billion missed opportunity — customers were buying front-of-house products from competitors. A Marketplace was needed to recapture that revenue within their own ecosystem.',what:'Spearheaded the design of the core Marketplace experience — browsing, cart management, account and order management. Led user interviews, worked closely with developers and Product Owners to refine requirements.',wow:'The MVP launched to positive feedback, with customers highlighting ease of use. The Marketplace streamlined purchasing and laid the foundation for future initiatives — while elevating the team\u2019s Design QA process.',quote:'\u201cKoi Hernandez has been so great to work with on the Marketplace project. He is thoughtful in his designs, asks the right questions, delivers great designs in an organized and thorough manner. He is forward thinking and has brought so much value to the design of this project.\u201d',quoteSource:'Client Stakeholder — Life Sciences Marketplace',href:'life-sciences-marketplace.html'},
-        'redefining-knowledge-management':{discipline:'UX Design · Human-Centered Design',title:'Redefining Knowledge Management',subtitle:'Elevating Tech With UX Innovation & Efficiency',client:'A leading global technology company specializing in online advertising, cloud computing, and artificial intelligence',why:'The client\u2019s technical consultant group lacked a central repository for solutions, leading to outdated content, effort duplication, and poor discoverability. A unified platform was critical.',what:'Collaborated with UX and visual designers to create a unified solutions hub with an underlying CMS. Developed wireframes and hi-fi mockups, conducted usability tests across regions, and aligned stakeholders.',wow:'Site ratings improved from 2 to 4.3 out of 5 stars. Reduced repetitive tasks, increased transparency, and elevated the team\u2019s brand identity. Established a new visual standard for future product development.',quote:'\u201cKoi has a calm demeanor which proved to be useful when dealing with stakeholders who constantly change their minds. Despite unclear feedback and constant design changes, Koi always remained level headed and provided the best design recommendations.\u201d',quoteSource:'Colleague Designer — Big Tech engagement',href:'redefining-knowledge-management.html'},
-        'life-science-retailer-ecommerce':{discipline:'UX/UI Design',title:'Life Science Retailer E-commerce',subtitle:'Streamlining Life Sciences Shopping With Intuitive Design',client:'A company developing and selling products for biomedical testing and life sciences research',why:'Since launching their Storefront in 2018, the client\u2019s shopping experience had grown outdated. Customers cited complex specialized ordering, difficulty managing accounts, tracking orders, and scheduling deliveries.',what:'As Design Lead, organized discovery workshops and drove weekly deliverables. Developed wireframes and high-fidelity designs, produced prototypes, and led usability interviews — all within a compressed six-week timeline.',wow:'Delivered beyond the initial scope of 18 screens in six weeks — and created a foundational design system for future teams. The designs are still in production today, proving their lasting value.',quote:'\u201cKoi has done an outstanding job organizing the design discovery sessions with the client. He had to start from a blank slate and extract design requirements. Even after several weeks of further technical discoveries, the designs Koi provided are holding solid.\u201d',quoteSource:'Engagement Lead — Life Sciences Retail',href:'life-science-retailer-ecommerce.html'},
-        'elevating-design-efficiency':{discipline:'UX/UI Design · Product Design',title:'Elevating Design Efficiency',subtitle:'Building a Unified Component Ecosystem',client:'A leading U.S.-based financial services institution',why:'Designers across multiple teams lacked a centralized, reliable resource for building new experiences — causing inefficiencies and inconsistencies. The client needed a scalable design system as both a creative launchpad and a single source of truth.',what:'Led the creation of a global Figma library shared across three teams, consolidating components, patterns, and templates. Introduced Figma variables for content switching and branching for version control — enabling rapid prototyping at scale.',wow:'Cut time-to-design in half through innovative components like Form Builder. The system became a trusted reference for designers, developers, and PMs. Delivered a multi-library architecture of five interconnected libraries.',quote:'\u201cI\u2019m using Form Builder and it\u2019s amazing! It\u2019s saving me so much time to create a flow that I can\u2019t even describe how happy I am that this is built. I love it!\u201d',quoteSource:'Designer — Financial Services engagement',href:'elevating-design-efficiency.html'}
+        'banking-on-design':{discipline:'Design Systems · UI Design',title:'Banking on Design',subtitle:'Unifying Design Systems Across Teams',client:'A global investment bank and financial services company',why:'The client needed to re-envision and simplify their call center agent experience across multiple product lines, agent workflows, and data platforms — creating a unified "North Star" platform for operational efficiency.',what:'As Lead Designer for the Design Systems Pod, I built a cohesive design system ensuring consistency across multiple pods. I acted as design system SME, coordinated with development teams, and facilitated cross-program collaboration.',wow:'Delivered a holistic, mature design system complete with content and governance guidelines — giving the client full independence after our engagement ended. Strengthened cross-business-unit collaboration and enabled a cohesive digital experience.',quote:'\u201cI learned a lot from working with Koi. Though he was the XD lead, my voice was heard as an equal. Koi acted as a mentor — teaching the ins and outs of Figma, design systems, and sprint planning. He deserves recognition for not only exceeding expectations, but also for making time for other team members.\u201d',quoteSource:'Colleague Designer — Financial Services engagement',href:'banking-on-design.html'},
+        'life-sciences-marketplace':{discipline:'UX/UI Design · Product',title:'Life Sciences Marketplace',subtitle:'Redesigning the Retail Pharmacy Experience',client:'A leading global pharmaceutical solutions organization',why:'The client identified a $1.5 billion missed opportunity — customers were buying front-of-house products from competitors. A Marketplace was needed to recapture that revenue within their own ecosystem.',what:'Spearheaded the design of the core Marketplace experience — browsing, cart management, account and order management. Led user interviews, worked closely with developers and Product Owners to refine requirements.',wow:'The MVP launched to positive feedback, with customers highlighting ease of use. The Marketplace streamlined purchasing and laid the foundation for future initiatives — while elevating the team\u2019s Design QA process.',quote:'\u201cKoi Hernandez has been so great to work with on the Marketplace project. He is thoughtful in his designs, asks the right questions, delivers great designs in an organized and thorough manner. He is forward thinking and has brought so much value to the design of this project.\u201d',quoteSource:'Client Stakeholder — Life Sciences Marketplace',href:'life-sciences-marketplace.html'},
+        'redefining-knowledge-management':{discipline:'UX Design · Human-Centered Design',title:'Redefining Knowledge Management',subtitle:'Building a Unified Knowledge Hub',client:'A leading global technology company specializing in online advertising, cloud computing, and artificial intelligence',why:'The client\u2019s technical consultant group lacked a central repository for solutions, leading to outdated content, effort duplication, and poor discoverability. A unified platform was critical.',what:'Collaborated with UX and visual designers to create a unified solutions hub with an underlying CMS. Developed wireframes and hi-fi mockups, conducted usability tests across regions, and aligned stakeholders.',wow:'Site ratings improved from 2 to 4.3 out of 5 stars. Reduced repetitive tasks, increased transparency, and elevated the team\u2019s brand identity. Established a new visual standard for future product development.',quote:'\u201cKoi has a calm demeanor which proved to be useful when dealing with stakeholders who constantly change their minds. Despite unclear feedback and constant design changes, Koi always remained level headed and provided the best design recommendations.\u201d',quoteSource:'Colleague Designer — Big Tech engagement',href:'redefining-knowledge-management.html'},
+        'life-science-retailer-ecommerce':{discipline:'UX/UI Design',title:'Life Science Retailer E-commerce',subtitle:'Redesigning the Life Sciences Shopping Experience',client:'A company developing and selling products for biomedical testing and life sciences research',why:'Since launching their Storefront in 2018, the client\u2019s shopping experience had grown outdated. Customers cited complex specialized ordering, difficulty managing accounts, tracking orders, and scheduling deliveries.',what:'As Design Lead, organized discovery workshops and drove weekly deliverables. Developed wireframes and high-fidelity designs, produced prototypes, and led usability interviews — all within a compressed six-week timeline.',wow:'Delivered beyond the initial scope of 18 screens in six weeks — and created a foundational design system for future teams. The designs are still in production today, proving their lasting value.',quote:'\u201cKoi has done an outstanding job organizing the design discovery sessions with the client. He had to start from a blank slate and extract design requirements. Even after several weeks of further technical discoveries, the designs Koi provided are holding solid.\u201d',quoteSource:'Engagement Lead — Life Sciences Retail',href:'life-science-retailer-ecommerce.html'},
+        'elevating-design-efficiency':{discipline:'UX/UI Design · Product Design',title:'Elevating Design Efficiency',subtitle:'Building a Shared Component Library',client:'A leading U.S.-based financial services institution',why:'Designers across multiple teams lacked a centralized, reliable resource for building new experiences — causing inefficiencies and inconsistencies. The client needed a scalable design system as both a creative launchpad and a single source of truth.',what:'Led the creation of a global Figma library shared across three teams, consolidating components, patterns, and templates. Introduced Figma variables for content switching and branching for version control — enabling rapid prototyping at scale.',wow:'Cut time-to-design in half through innovative components like Form Builder. The system became a trusted reference for designers, developers, and PMs. Delivered a multi-library architecture of five interconnected libraries.',quote:'\u201cI\u2019m using Form Builder and it\u2019s amazing! It\u2019s saving me so much time to create a flow that I can\u2019t even describe how happy I am that this is built. I love it!\u201d',quoteSource:'Designer — Financial Services engagement',href:'elevating-design-efficiency.html'}
       };
       var backdrop=document.getElementById('case-modal'),closeBtn=document.getElementById('modal-close'),lastFocused=null;
       function openModal(slug){var d=CASES[slug];if(!d)return;document.getElementById('modal-discipline').textContent=d.discipline;document.getElementById('modal-title').textContent=d.title+': '+d.subtitle;document.getElementById('modal-subtitle').textContent='';var cl=document.getElementById('modal-client');cl.innerHTML='';var s=document.createElement('strong');s.textContent='Client: ';cl.appendChild(s);cl.appendChild(document.createTextNode(d.client));document.getElementById('modal-why').textContent=d.why;document.getElementById('modal-what').textContent=d.what;document.getElementById('modal-wow').textContent=d.wow;document.getElementById('modal-quote').textContent=d.quote;document.getElementById('modal-quote-source').textContent=d.quoteSource;document.getElementById('modal-link').href=d.href;backdrop.hidden=false;document.body.style.overflow='hidden';closeBtn.focus();}
